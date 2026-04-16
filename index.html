@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>LeadPilot by Boldbeam — AI Lead Response for Real Estate Agents</title>
+<meta name="description" content="LeadPilot replies to every real estate lead in under 60 seconds with AI. Built by Boldbeam. Try the live demo." />
+
+<!-- Open Graph (Facebook, LinkedIn, iMessage previews) -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Boldbeam" />
+<meta property="og:title" content="LeadPilot — AI Lead Response for Real Estate Agents" />
+<meta property="og:description" content="Replies to every Zillow, Realtor.com, Facebook, and open-house lead in under 60 seconds. Try the live demo — no signup." />
+<meta property="og:url" content="https://boldbeam.io/" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="LeadPilot — AI Lead Response for Real Estate Agents" />
+<meta name="twitter:description" content="Replies to every real estate lead in under 60 seconds. Try the live demo." />
+
+<!-- Theme + favicon (inline SVG so no extra files needed) -->
+<meta name="theme-color" content="#6366F1" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%236366F1'/%3E%3Cstop offset='100%25' stop-color='%2322D3EE'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Ctext x='50' y='70' font-family='Arial,sans-serif' font-size='62' font-weight='800' text-anchor='middle' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
+<style>
+  :root {
+    --bg: #0A0E1F;
+    --bg-2: #0F1530;
+    --card: #161D3F;
+    --card-2: #1D2654;
+    --line: #262F5E;
+    --text: #F1F5FF;
+    --muted: #8892B8;
+    --muted-2: #5B6690;
+    --brand: #6366F1;
+    --brand-2: #8B5CF6;
+    --brand-3: #A78BFA;
+    --accent: #22D3EE;
+    --pink: #EC4899;
+    --green: #10B981;
+    --amber: #F59E0B;
+    --red: #EF4444;
+    --blue: #3B82F6;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+  body { min-height: 100vh; overflow-x: hidden; }
+  a { color: inherit; }
+
+  /* ============ TOP NAV ============ */
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(12px);
+    background: rgba(10, 14, 31, 0.85);
+    border-bottom: 1px solid var(--line);
+    padding: 14px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .parent-brand { display: flex; align-items: center; gap: 12px; }
+  .parent-logo {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--brand), var(--brand-2), var(--pink));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; color: white;
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+  }
+  .brand-text { line-height: 1.15; }
+  .parent-name { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+  .parent-tag { font-size: 11px; color: var(--muted); }
+  .nav-divider { margin: 0 14px; color: var(--muted-2); }
+  .product-name { font-weight: 700; font-size: 15px; color: var(--brand-3); }
+  .topnav-right { display: flex; align-items: center; gap: 20px; }
+  .topnav-right a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; }
+  .topnav-right a:hover { color: var(--text); }
+  .nav-btn {
+    background: linear-gradient(135deg, var(--brand), var(--brand-2));
+    color: white; padding: 8px 16px; border-radius: 8px;
+    font-weight: 600; font-size: 13px; border: none; cursor: pointer;
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+  }
+  @media (max-width: 768px) {
+    .hide-mobile { display: none; }
+    .topnav { padding: 12px 18px; }
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    padding: 80px 32px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, transparent 60%);
+    z-index: 0;
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; border-radius: 40px;
+    background: rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(139, 92, 246, 0.35);
+    font-size: 12px; font-weight: 600; color: var(--brand-3);
+    margin-bottom: 20px;
+  }
+  .pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); animation: pulseDot 2s infinite; }
+  @keyframes pulseDot { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .hero h1 {
+    font-size: clamp(32px, 6vw, 60px); line-height: 1.05;
+    font-weight: 800; letter-spacing: -0.03em;
+    margin: 0 0 20px;
+  }
+  .hero h1 .gradient {
+    background: linear-gradient(135deg, var(--brand-3), var(--accent));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p {
+    font-size: clamp(15px, 2vw, 20px); color: var(--muted);
+    max-width: 640px; margin: 0 auto 32px; line-height: 1.6;
+  }
+  .hero-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    padding: 14px 24px; border-radius: 12px; font-weight: 600; font-size: 15px;
+    cursor: pointer; border: none; transition: transform 0.1s ease;
+    display: inline-flex; align-items: center; gap: 8px;
+    text-decoration: none;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--brand), var(--brand-2));
+    color: white;
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.45);
+  }
+  .btn-ghost {
+    background: rgba(255, 255, 255, 0.06); color: var(--text);
+    border: 1px solid var(--line);
+  }
+  .hero-meta {
+    margin-top: 24px; color: var(--muted); font-size: 13px;
+    display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+  }
+  .hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+  /* ============ STATS STRIP ============ */
+  .stats-strip {
+    max-width: 1100px; margin: 40px auto 80px;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: var(--line);
+    border-radius: 16px; overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .strip-stat { background: var(--bg-2); padding: 20px; text-align: center; }
+  .strip-stat .num { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; }
+  .strip-stat .num .g { background: linear-gradient(135deg, var(--brand-2), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .strip-stat .lbl { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  @media (max-width: 768px) { .stats-strip { grid-template-columns: repeat(2, 1fr); } }
+
+  /* ============ PROBLEM SECTION ============ */
+  .section { padding: 80px 32px; max-width: 1200px; margin: 0 auto; }
+  .section-eyebrow { color: var(--accent); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; text-align: center; margin-bottom: 12px; }
+  .section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; letter-spacing: -0.02em; text-align: center; margin: 0 0 16px; }
+  .section-sub { font-size: 16px; color: var(--muted); text-align: center; max-width: 640px; margin: 0 auto 50px; line-height: 1.6; }
+
+  .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 768px) { .vs-grid { grid-template-columns: 1fr; } }
+  .vs-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 28px;
+  }
+  .vs-card.bad { border-color: rgba(239, 68, 68, 0.35); }
+  .vs-card.good { border-color: rgba(16, 185, 129, 0.35); background: linear-gradient(135deg, var(--card), rgba(16, 185, 129, 0.05)); }
+  .vs-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+  .vs-card.bad .vs-title { color: #FCA5A5; }
+  .vs-card.good .vs-title { color: #6EE7B7; }
+  .vs-big { font-size: 38px; font-weight: 800; letter-spacing: -0.02em; margin: 8px 0; }
+  .vs-card.bad .vs-big { color: #FCA5A5; }
+  .vs-card.good .vs-big { color: #6EE7B7; }
+  .vs-desc { color: var(--muted); font-size: 14px; line-height: 1.6; }
+  .vs-list { margin-top: 16px; }
+  .vs-list li { color: var(--muted); font-size: 14px; margin-bottom: 8px; list-style: none; display: flex; align-items: flex-start; gap: 8px; }
+  .vs-list li::before { content: ''; width: 8px; height: 8px; border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
+  .vs-card.bad .vs-list li::before { background: #FCA5A5; }
+  .vs-card.good .vs-list li::before { background: #6EE7B7; }
+
+  /* ============ DEMO SECTION ============ */
+  .demo-wrap {
+    margin: 0 auto 80px;
+    padding: 0 16px;
+    max-width: 1360px;
+  }
+  .demo-frame {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(139, 92, 246, 0.15);
+  }
+  .demo-bar {
+    background: var(--card);
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; gap: 14px;
+  }
+  .browser-dots { display: flex; gap: 6px; }
+  .dot-red { width: 11px; height: 11px; border-radius: 50%; background: #FF5F57; }
+  .dot-yel { width: 11px; height: 11px; border-radius: 50%; background: #FEBC2E; }
+  .dot-grn { width: 11px; height: 11px; border-radius: 50%; background: #28C840; }
+  .browser-url {
+    flex: 1; background: var(--bg); border-radius: 6px;
+    padding: 6px 14px; font-size: 12px; color: var(--muted);
+    font-family: ui-monospace, monospace;
+  }
+  .browser-url .lock { color: var(--green); margin-right: 6px; }
+
+  .scenario-bar {
+    background: linear-gradient(135deg, #1A2149, #1F1941);
+    border-bottom: 1px solid var(--line);
+    padding: 16px 20px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap;
+  }
+  .scenario-left { display: flex; flex-direction: column; gap: 2px; }
+  .scenario-label { font-size: 12px; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+  .scenario-title { font-size: 14px; font-weight: 600; }
+  .scenario-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+  .scenario-btn {
+    padding: 8px 14px; border-radius: 8px; border: 1px solid var(--line);
+    background: rgba(99, 102, 241, 0.1); color: var(--text);
+    font-size: 12px; font-weight: 600; cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .scenario-btn:hover { background: rgba(99, 102, 241, 0.2); border-color: var(--brand); }
+  .scenario-btn.primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); border: none; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35); }
+
+  /* ============ APP (embedded dashboard) ============ */
+  .app { background: var(--bg-2); }
+  .app-nav {
+    padding: 14px 22px; border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--bg-2);
+  }
+  .app-brand { display: flex; align-items: center; gap: 10px; }
+  .app-logo {
+    width: 30px; height: 30px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--brand), var(--accent));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; color: white; font-size: 14px;
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+  }
+  .app-name { font-weight: 700; letter-spacing: -0.01em; font-size: 15px; }
+  .app-agent { display: flex; align-items: center; gap: 8px; }
+  .app-avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; color: white; font-size: 13px;
+  }
+  .app-agent-meta { line-height: 1.15; font-size: 12px; }
+  .app-agent-name { font-weight: 600; }
+  .app-agent-sub { color: var(--muted); font-size: 10px; }
+
+  .app-live-banner {
+    padding: 10px 22px;
+    background: linear-gradient(90deg, rgba(99, 102, 241, 0.15), rgba(34, 211, 238, 0.12));
+    border-bottom: 1px solid var(--line);
+    font-size: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); animation: pulseDot 1.5s infinite; box-shadow: 0 0 10px var(--green); }
+  .app-live-banner b { color: var(--brand-3); }
+
+  .app-body { padding: 20px 22px 24px; }
+  .app-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 18px; }
+  @media (max-width: 768px) { .app-stats { grid-template-columns: repeat(2, 1fr); } }
+  .app-stat {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 14px 16px;
+  }
+  .app-stat-lbl { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .app-stat-val { font-size: 22px; font-weight: 700; margin-top: 4px; letter-spacing: -0.02em; }
+  .app-stat-sub { font-size: 10px; color: var(--green); margin-top: 2px; }
+  .app-stat-sub.amber { color: var(--amber); }
+
+  .app-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 14px; }
+  @media (max-width: 900px) { .app-grid { grid-template-columns: 1fr; } }
+
+  .panel {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; overflow: hidden;
+  }
+  .panel-h {
+    padding: 14px 16px; border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .panel-h .ttl { font-size: 13px; font-weight: 600; }
+  .panel-h .sub { font-size: 11px; color: var(--muted); }
+
+  .lead-list { max-height: 480px; overflow-y: auto; }
+  .lead {
+    padding: 12px 16px; border-bottom: 1px solid var(--line);
+    cursor: pointer; display: flex; gap: 10px; align-items: flex-start;
+    transition: background 0.15s ease;
+  }
+  .lead:hover { background: rgba(99, 102, 241, 0.06); }
+  .lead.active { background: rgba(99, 102, 241, 0.12); border-left: 3px solid var(--brand); padding-left: 13px; }
+  .lead-avatar {
+    width: 34px; height: 34px; min-width: 34px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; color: white; font-size: 12px;
+  }
+  .lead-info { flex: 1; min-width: 0; }
+  .lead-top { display: flex; justify-content: space-between; gap: 8px; }
+  .lead-name { font-weight: 600; font-size: 13px; }
+  .lead-time { font-size: 10px; color: var(--muted); white-space: nowrap; }
+  .lead-snip { font-size: 11px; color: var(--muted); margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lead-tags { margin-top: 6px; display: flex; gap: 5px; flex-wrap: wrap; }
+  .tag {
+    font-size: 9px; padding: 2px 7px; border-radius: 20px;
+    background: rgba(255, 255, 255, 0.06); color: var(--muted);
+    border: 1px solid var(--line); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600;
+  }
+  .tag.zillow { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border-color: rgba(59, 130, 246, 0.3); }
+  .tag.fb { background: rgba(29, 78, 216, 0.18); color: #93c5fd; border-color: rgba(29, 78, 216, 0.3); }
+  .tag.open { background: rgba(236, 72, 153, 0.15); color: #f9a8d4; border-color: rgba(236, 72, 153, 0.3); }
+  .tag.web { background: rgba(16, 185, 129, 0.15); color: #6ee7b7; border-color: rgba(16, 185, 129, 0.3); }
+  .tag.realtor { background: rgba(245, 158, 11, 0.15); color: #fcd34d; border-color: rgba(245, 158, 11, 0.3); }
+  .tag.hot { background: rgba(239, 68, 68, 0.2); color: #fca5a5; border-color: rgba(239, 68, 68, 0.4); }
+  .tag.warm { background: rgba(245, 158, 11, 0.15); color: #fcd34d; border-color: rgba(245, 158, 11, 0.3); }
+  .tag.replied { background: rgba(16, 185, 129, 0.18); color: #6ee7b7; border-color: rgba(16, 185, 129, 0.3); }
+  .tag.responding { background: rgba(139, 92, 246, 0.2); color: #c4b5fd; border-color: rgba(139, 92, 246, 0.4); }
+  .pulse { animation: pulse 1.4s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .slide-in { animation: slidein 0.45s ease; }
+  @keyframes slidein { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .convo { display: flex; flex-direction: column; height: 480px; }
+  .convo-header { padding: 14px 16px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+  .convo-lead { display: flex; gap: 10px; align-items: center; }
+  .convo-lead-info { line-height: 1.15; }
+  .convo-lead-name { font-weight: 600; font-size: 13px; }
+  .convo-lead-meta { font-size: 10px; color: var(--muted); }
+  .convo-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .msg { max-width: 80%; padding: 10px 13px; border-radius: 14px; font-size: 12.5px; line-height: 1.45; }
+  .msg.ai { align-self: flex-start; background: var(--card-2); border: 1px solid var(--line); }
+  .msg.ai.pilot {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(34, 211, 238, 0.12));
+    border-color: rgba(99, 102, 241, 0.35);
+  }
+  .msg.lead { align-self: flex-end; background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: white; }
+  .msg-meta { font-size: 9.5px; color: var(--muted); margin-top: 4px; }
+  .msg.ai.pilot .msg-meta { color: var(--brand-3); }
+  .msg.lead .msg-meta { color: rgba(255, 255, 255, 0.85); }
+  .typing { display: flex; gap: 4px; padding: 4px 0; }
+  .typing span { width: 7px; height: 7px; border-radius: 50%; background: var(--brand-3); animation: bounce 1.4s infinite; }
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes bounce { 0%,100% { transform: translateY(0); opacity: 0.4; } 50% { transform: translateY(-6px); opacity: 1; } }
+
+  .convo-footer { padding: 12px 16px; border-top: 1px solid var(--line); background: var(--card-2); }
+  .convo-input { display: flex; gap: 10px; align-items: center; }
+  .fake-input { flex: 1; padding: 9px 12px; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; font-size: 12px; color: var(--muted); }
+  .takeover-banner {
+    background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #fecaca; padding: 9px 12px; border-radius: 8px; font-size: 11px;
+    display: flex; justify-content: space-between; align-items: center; gap: 10px;
+    margin: 0 16px 10px;
+  }
+  .mini-btn { background: var(--green); color: white; border: none; border-radius: 6px; padding: 5px 10px; font-size: 11px; font-weight: 600; cursor: pointer; }
+
+  /* ============ HOW IT WORKS ============ */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 900px) { .steps { grid-template-columns: 1fr; } }
+  .step-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 18px; padding: 28px 26px;
+    position: relative;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .step-card:hover { transform: translateY(-4px); border-color: var(--brand); }
+  .step-num {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--brand), var(--brand-2));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 15px; margin-bottom: 16px;
+    box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+  }
+  .step-card h3 { margin: 0 0 8px; font-size: 18px; letter-spacing: -0.01em; }
+  .step-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
+  .step-card ul { margin: 12px 0 0; padding-left: 0; list-style: none; }
+  .step-card ul li {
+    font-size: 13px; color: var(--muted); padding: 5px 0; padding-left: 20px; position: relative;
+  }
+  .step-card ul li::before {
+    content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700;
+  }
+
+  /* ============ SOCIAL PROOF ============ */
+  .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 900px) { .quotes { grid-template-columns: 1fr; } }
+  .quote-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 16px; padding: 22px;
+  }
+  .stars { color: var(--amber); font-size: 13px; margin-bottom: 10px; }
+  .quote { font-size: 14px; line-height: 1.6; margin: 0 0 16px; }
+  .quote-person { display: flex; align-items: center; gap: 10px; }
+  .quote-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #60a5fa, #a78bfa); display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; font-size: 13px; }
+  .quote-name { font-size: 13px; font-weight: 600; }
+  .quote-role { font-size: 11px; color: var(--muted); }
+
+  /* ============ PRICING ============ */
+  .pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 1000px; margin: 0 auto; }
+  @media (max-width: 900px) { .pricing { grid-template-columns: 1fr; } }
+  .plan {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 18px; padding: 28px; position: relative;
+  }
+  .plan.featured {
+    border-color: var(--brand); border-width: 2px;
+    background: linear-gradient(135deg, var(--card), rgba(99, 102, 241, 0.08));
+    transform: scale(1.02);
+  }
+  .plan-badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--brand), var(--brand-2));
+    color: white; padding: 4px 12px; border-radius: 20px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .plan-name { font-size: 14px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .plan-price { font-size: 44px; font-weight: 800; letter-spacing: -0.03em; }
+  .plan-price span { font-size: 14px; color: var(--muted); font-weight: 500; }
+  .plan-desc { color: var(--muted); font-size: 13px; margin: 8px 0 22px; }
+  .plan ul { list-style: none; padding: 0; margin: 0 0 24px; }
+  .plan ul li { padding: 7px 0; padding-left: 24px; position: relative; font-size: 13.5px; color: var(--text); }
+  .plan ul li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+  .plan ul li.dim { color: var(--muted); }
+  .plan-btn { width: 100%; }
+
+  /* ============ FAQ ============ */
+  .faq-list { max-width: 720px; margin: 0 auto; }
+  .faq-item {
+    border: 1px solid var(--line); border-radius: 14px;
+    padding: 18px 22px; margin-bottom: 12px;
+    background: var(--card); cursor: pointer;
+    transition: border-color 0.2s ease;
+  }
+  .faq-item:hover { border-color: var(--brand); }
+  .faq-item[open] { border-color: var(--brand); }
+  .faq-item summary { font-weight: 600; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: '+'; color: var(--muted); font-size: 20px; }
+  .faq-item[open] summary::after { content: '−'; color: var(--brand-3); }
+  .faq-item p { color: var(--muted); font-size: 14px; line-height: 1.6; margin: 12px 0 0; }
+
+  /* ============ FINAL CTA ============ */
+  .final-cta {
+    background: linear-gradient(135deg, #1F1B4E, #2D1E5B, #1A2149);
+    margin: 0 32px 80px; padding: 60px 32px;
+    border-radius: 28px; text-align: center;
+    border: 1px solid rgba(139, 92, 246, 0.35);
+    position: relative; overflow: hidden;
+  }
+  .final-cta::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(99, 102, 241, 0.25), transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(34, 211, 238, 0.2), transparent 50%);
+  }
+  .final-cta-inner { position: relative; z-index: 1; }
+  .final-cta h2 { font-size: clamp(26px, 4vw, 40px); font-weight: 800; letter-spacing: -0.02em; margin: 0 0 12px; }
+  .final-cta p { color: var(--muted); font-size: 16px; max-width: 540px; margin: 0 auto 26px; }
+
+  /* ============ FOOTER ============ */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 40px 32px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  footer a { color: var(--muted); text-decoration: none; margin: 0 10px; }
+  footer a:hover { color: var(--brand-3); }
+
+</style>
+</head>
+<body>
+
+<!-- ============ TOP NAV ============ -->
+<nav class="topnav">
+  <div style="display: flex; align-items: center;">
+    <div class="parent-brand">
+      <div class="parent-logo">B</div>
+      <div class="brand-text">
+        <div class="parent-name">Boldbeam</div>
+        <div class="parent-tag">AI products for service businesses</div>
+      </div>
+    </div>
+    <span class="nav-divider">/</span>
+    <div class="product-name">LeadPilot</div>
+  </div>
+  <div class="topnav-right">
+    <a class="hide-mobile" href="#how">How it works</a>
+    <a class="hide-mobile" href="#demo">Demo</a>
+    <a class="hide-mobile" href="#pricing">Pricing</a>
+    <a class="hide-mobile" href="#faq">FAQ</a>
+    <button class="nav-btn" onclick="scrollToDemo()">Try live demo</button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="pill"><span class="dot"></span> Built by Boldbeam · Now in beta</div>
+    <h1>Reply to every lead in <span class="gradient">under 60 seconds.</span><br/>Even while you're showing houses.</h1>
+    <p>LeadPilot texts every new Zillow, Realtor.com, Facebook, and open-house lead the moment they arrive — with a real AI conversation, not a canned autoresponder. You only step in when the lead is actually ready to book.</p>
+    <div class="hero-ctas">
+      <button class="btn btn-primary" onclick="scrollToDemo()">▶ Try the live demo</button>
+      <a class="btn btn-ghost" href="#pricing">See pricing</a>
+    </div>
+    <div class="hero-meta">
+      <span>✓ 14-day free trial</span>
+      <span>✓ No credit card</span>
+      <span>✓ Set up in 10 minutes</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS STRIP ============ -->
+<div class="stats-strip">
+  <div class="strip-stat"><div class="num"><span class="g">21×</span></div><div class="lbl">More likely to convert replying in 5 min vs 30 min (HBR)</div></div>
+  <div class="strip-stat"><div class="num"><span class="g">38s</span></div><div class="lbl">LeadPilot average response time</div></div>
+  <div class="strip-stat"><div class="num"><span class="g">87%</span></div><div class="lbl">Average lead reply rate after LeadPilot</div></div>
+  <div class="strip-stat"><div class="num"><span class="g">3.2×</span></div><div class="lbl">Avg. appointment lift for agents in beta</div></div>
+</div>
+
+<!-- ============ PROBLEM ============ -->
+<section class="section">
+  <div class="section-eyebrow">The leaky bucket</div>
+  <h2 class="section-title">Your leads aren't the problem.<br/>Your response time is.</h2>
+  <p class="section-sub">Real estate agents lose 40–50% of inbound leads because they took too long to text back. By the time you call, your lead has already messaged three other agents.</p>
+  <div class="vs-grid">
+    <div class="vs-card bad">
+      <div class="vs-title">The typical agent</div>
+      <div class="vs-big">2h 12m</div>
+      <div class="vs-desc">Average time to first reply for a Zillow or Realtor.com lead. That's 132 minutes of your lead comparing other agents.</div>
+      <ul class="vs-list">
+        <li>Lead hits inbox while you're at a showing</li>
+        <li>You reply hours later with a generic "Got your message"</li>
+        <li>Lead already contacted 3 other agents</li>
+        <li>44% of leads never get a second follow-up</li>
+        <li>You paid $25–$300 for that lead. Gone.</li>
+      </ul>
+    </div>
+    <div class="vs-card good">
+      <div class="vs-title">Agents on LeadPilot</div>
+      <div class="vs-big">38 seconds</div>
+      <div class="vs-desc">LeadPilot sends a personalized text the moment the lead hits, continues the conversation with AI, and pings you only when it's time to close.</div>
+      <ul class="vs-list">
+        <li>AI replies in under a minute, 24/7</li>
+        <li>Personalized to the property + lead source</li>
+        <li>Handles 3–5 back-and-forths, books showings</li>
+        <li>Runs 14-day follow-up automatically</li>
+        <li>You take over when the lead is hot</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEMO SECTION ============ -->
+<section id="demo" class="section" style="padding-bottom: 30px;">
+  <div class="section-eyebrow">Live interactive demo</div>
+  <h2 class="section-title">See LeadPilot in action.</h2>
+  <p class="section-sub">Pick a lead source below and watch LeadPilot respond in real time. No signup, no video — this is the actual product experience.</p>
+</section>
+<div class="demo-wrap">
+  <div class="demo-frame">
+    <div class="demo-bar">
+      <div class="browser-dots">
+        <div class="dot-red"></div><div class="dot-yel"></div><div class="dot-grn"></div>
+      </div>
+      <div class="browser-url"><span class="lock">🔒</span> app.boldbeam.io/leadpilot/dashboard</div>
+    </div>
+    <div class="scenario-bar">
+      <div class="scenario-left">
+        <div class="scenario-label">▸ Try a scenario</div>
+        <div class="scenario-title">Simulate a new lead hitting Jordan's inbox</div>
+      </div>
+      <div class="scenario-btns">
+        <button class="scenario-btn" onclick="simulate('zillow')">💎 Zillow lead</button>
+        <button class="scenario-btn" onclick="simulate('open')">🏡 Open house lead</button>
+        <button class="scenario-btn" onclick="simulate('fb')">📱 Facebook ad lead</button>
+        <button class="scenario-btn" onclick="resetDemo()">↻ Reset</button>
+      </div>
+    </div>
+
+    <!-- App -->
+    <div class="app">
+      <div class="app-nav">
+        <div class="app-brand">
+          <div class="app-logo">L</div>
+          <div class="app-name">LeadPilot</div>
+        </div>
+        <div class="app-agent">
+          <div class="app-avatar">JR</div>
+          <div class="app-agent-meta">
+            <div class="app-agent-name">Jordan Reyes</div>
+            <div class="app-agent-sub">KW · Nashville, TN</div>
+          </div>
+        </div>
+      </div>
+      <div class="app-live-banner">
+        <span class="live-dot"></span>
+        <div><b>LeadPilot is live.</b> Monitoring Zillow, Realtor.com, Facebook Lead Ads, and your website.</div>
+      </div>
+      <div class="app-body">
+        <div class="app-stats">
+          <div class="app-stat">
+            <div class="app-stat-lbl">Leads today</div>
+            <div class="app-stat-val" id="statLeads">14</div>
+            <div class="app-stat-sub">+6 vs. yesterday</div>
+          </div>
+          <div class="app-stat">
+            <div class="app-stat-lbl">Avg. response</div>
+            <div class="app-stat-val" id="statResponse">38s</div>
+            <div class="app-stat-sub">Industry avg: 2h 12m</div>
+          </div>
+          <div class="app-stat">
+            <div class="app-stat-lbl">Reply rate (30d)</div>
+            <div class="app-stat-val">87%</div>
+            <div class="app-stat-sub">+12% this month</div>
+          </div>
+          <div class="app-stat">
+            <div class="app-stat-lbl">Leads → Appts</div>
+            <div class="app-stat-val">24%</div>
+            <div class="app-stat-sub amber">Goal: 30%</div>
+          </div>
+        </div>
+
+        <div class="app-grid">
+          <!-- Lead list -->
+          <div class="panel">
+            <div class="panel-h">
+              <div>
+                <div class="ttl">Today's leads</div>
+                <div class="sub" id="leadCountLabel">14 leads · 12 responded · 2 hot</div>
+              </div>
+            </div>
+            <div class="lead-list" id="leadList"></div>
+          </div>
+
+          <!-- Conversation -->
+          <div class="panel convo">
+            <div class="convo-header">
+              <div class="convo-lead">
+                <div class="lead-avatar" id="convoAvatar" style="background: linear-gradient(135deg, #f472b6, #c084fc);">ST</div>
+                <div class="convo-lead-info">
+                  <div class="convo-lead-name" id="convoName">Samantha Torres</div>
+                  <div class="convo-lead-meta" id="convoMeta">Open House · 412 Pine Hollow Dr · $485,000</div>
+                </div>
+              </div>
+              <span class="tag replied" id="convoStatus">AI handling</span>
+            </div>
+            <div class="takeover-banner" id="takeoverBanner" style="display: none;">
+              <div>🔥 <b id="takeoverLead">Samantha</b> is ready to book — take over?</div>
+              <button class="mini-btn" onclick="takeOver()">Take over</button>
+            </div>
+            <div class="convo-messages" id="convoMessages"></div>
+            <div class="convo-footer">
+              <div class="convo-input">
+                <div class="fake-input">LeadPilot is handling this conversation automatically…</div>
+                <button class="btn btn-ghost" style="padding: 7px 12px; font-size: 12px;">Jump in</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align: center; margin-top: 18px; color: var(--muted); font-size: 13px;">
+    💡 <b style="color: var(--brand-3);">Pro tip:</b> Click "Zillow lead", watch the text send, then click "Simulate lead reply" to play the full conversation through to a booked showing.
+  </div>
+</div>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section id="how" class="section">
+  <div class="section-eyebrow">How it works</div>
+  <h2 class="section-title">Set it up in 10 minutes.<br/>Never lose a lead again.</h2>
+  <div class="steps">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <h3>Connect your lead sources</h3>
+      <p>Plug LeadPilot into everywhere your leads come from. One-click integrations, no dev work.</p>
+      <ul>
+        <li>Zillow Premier Agent email forwarding</li>
+        <li>Realtor.com auto-forwarding</li>
+        <li>Facebook Lead Ads</li>
+        <li>Open house QR sign-in</li>
+        <li>Website form embed</li>
+      </ul>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <h3>Train your AI</h3>
+      <p>Tell LeadPilot about you in 5 minutes. It picks up your voice, listings, and market knowledge.</p>
+      <ul>
+        <li>Upload your voice samples + current listings</li>
+        <li>Set your brokerage, calendar, and compliance rules</li>
+        <li>Define when to escalate to you</li>
+        <li>Approve the first 5 drafts, then let it fly</li>
+      </ul>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <h3>LeadPilot takes over</h3>
+      <p>AI responds in under 60 seconds, books showings, runs 14-day follow-up, and pings you only for hot leads.</p>
+      <ul>
+        <li>24/7 SMS + email coverage</li>
+        <li>Auto-books showings via your calendar</li>
+        <li>Syncs to Follow Up Boss + kvCORE</li>
+        <li>You focus on closings, not typing</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOCIAL PROOF ============ -->
+<section class="section" style="padding-top: 30px;">
+  <div class="section-eyebrow">What agents are saying</div>
+  <h2 class="section-title">Early results from the beta.</h2>
+  <p class="section-sub">We launched LeadPilot with 12 agents in April 2026. Here's what happened in their first 30 days.</p>
+  <div class="quotes">
+    <div class="quote-card">
+      <div class="stars">★★★★★</div>
+      <p class="quote">"I was spending $1,400/month on Zillow leads and losing half of them to slow response. LeadPilot booked me 11 showings in week one. It's the first tool I've actually kept past the trial."</p>
+      <div class="quote-person">
+        <div class="quote-avatar" style="background: linear-gradient(135deg, #60a5fa, #c084fc);">MG</div>
+        <div><div class="quote-name">Maya Gonzalez</div><div class="quote-role">KW · Phoenix, AZ</div></div>
+      </div>
+    </div>
+    <div class="quote-card">
+      <div class="stars">★★★★★</div>
+      <p class="quote">"I did an open house Saturday and had 14 sign-ins. By Sunday morning LeadPilot had already booked 3 private showings for me. Used to take me a week of manual follow-up to get that."</p>
+      <div class="quote-person">
+        <div class="quote-avatar" style="background: linear-gradient(135deg, #34d399, #60a5fa);">DT</div>
+        <div><div class="quote-name">Derek Tanner</div><div class="quote-role">Compass · Austin, TX</div></div>
+      </div>
+    </div>
+    <div class="quote-card">
+      <div class="stars">★★★★★</div>
+      <p class="quote">"The first AI tool that doesn't sound like an AI tool. My leads replied back thinking they were texting a real assistant. Closed 2 deals in 6 weeks from leads I would've let die in my inbox."</p>
+      <div class="quote-person">
+        <div class="quote-avatar" style="background: linear-gradient(135deg, #fb923c, #f472b6);">AS</div>
+        <div><div class="quote-name">Aisha Sharma</div><div class="quote-role">eXp · Nashville, TN</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section id="pricing" class="section">
+  <div class="section-eyebrow">Simple pricing</div>
+  <h2 class="section-title">One deal pays for a year.</h2>
+  <p class="section-sub">14-day free trial. No credit card. Cancel anytime. If LeadPilot doesn't book you an appointment in 30 days, we'll refund you.</p>
+  <div class="pricing">
+    <div class="plan">
+      <div class="plan-name">Starter</div>
+      <div class="plan-price">$29<span>/mo</span></div>
+      <div class="plan-desc">For brand-new agents testing the waters.</div>
+      <ul>
+        <li>100 leads/month</li>
+        <li>AI SMS + email responses</li>
+        <li>14-day follow-up sequences</li>
+        <li>Open house QR code</li>
+        <li class="dim">Multi-source integration</li>
+        <li class="dim">CRM sync</li>
+      </ul>
+      <button class="btn btn-ghost plan-btn">Start free trial</button>
+    </div>
+    <div class="plan featured">
+      <div class="plan-badge">Most popular</div>
+      <div class="plan-name">Solo Agent</div>
+      <div class="plan-price">$49<span>/mo</span></div>
+      <div class="plan-desc">For solo agents doing 6–30 deals a year.</div>
+      <ul>
+        <li>Unlimited leads</li>
+        <li>All lead source integrations</li>
+        <li>Zillow + Realtor.com + FB Ads</li>
+        <li>Calendar auto-booking</li>
+        <li>CRM sync (FUB, kvCORE, Chime)</li>
+        <li>Custom AI voice training</li>
+      </ul>
+      <button class="btn btn-primary plan-btn">Start free trial</button>
+    </div>
+    <div class="plan">
+      <div class="plan-name">Team</div>
+      <div class="plan-price">$149<span>/mo</span></div>
+      <div class="plan-desc">For teams of 3–10 agents.</div>
+      <ul>
+        <li>Everything in Solo Agent</li>
+        <li>5 agent seats included</li>
+        <li>Shared lead routing</li>
+        <li>Team analytics + leaderboard</li>
+        <li>White-label branding</li>
+        <li>Priority support</li>
+      </ul>
+      <button class="btn btn-ghost plan-btn">Book a demo</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="section">
+  <div class="section-eyebrow">FAQ</div>
+  <h2 class="section-title">Questions agents ask.</h2>
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary>Will my leads know it's an AI?</summary>
+      <p>Not unless you tell them. LeadPilot is trained to sound like a human assistant — it uses your name and brokerage, respects your voice, and doesn't give itself away. We can even brand it as "Jordan's Assistant" rather than a generic name. In compliance-strict states (CA, NY, FL), we can add a one-time disclosure.</p>
+    </details>
+    <details class="faq-item">
+      <summary>How is this different from Follow Up Boss or kvCORE?</summary>
+      <p>Those are CRMs with workflow automation — they require you to write every follow-up yourself. LeadPilot is an AI that actually converses with your lead in real time, asks qualifying questions, books showings, and only hands off when the lead is ready. Think of LeadPilot as the layer that sits ON TOP of your existing CRM — it syncs both ways with Follow Up Boss and kvCORE.</p>
+    </details>
+    <details class="faq-item">
+      <summary>What if the AI says something wrong?</summary>
+      <p>For your first 5 conversations, LeadPilot drafts the reply and waits for your one-tap approval. After that, you can let it fly or keep the approval step on high-value conversations (sellers, luxury, relocation). You can jump in any conversation at any time. There's a compliance layer that blocks any discriminatory language or fair-housing violations.</p>
+    </details>
+    <details class="faq-item">
+      <summary>How long does it take to set up?</summary>
+      <p>About 10 minutes. Forward one Zillow lead email so we can set up the parser, connect your Google Calendar, upload 3–5 writing samples, and you're live. Most agents are responding to leads within 15 minutes of signup.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Can I cancel anytime?</summary>
+      <p>Yes. Month-to-month, cancel in one click. If LeadPilot doesn't book you an appointment in your first 30 days, we refund you. We don't want your money if it's not working.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Do I need a separate phone number?</summary>
+      <p>No. LeadPilot gets you a local Twilio number that matches your area code, pre-registered for A2P 10DLC compliance, so your texts actually deliver. Your leads can text that number or your existing number — both flow into LeadPilot.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<div class="final-cta">
+  <div class="final-cta-inner">
+    <h2>Stop losing leads to slow replies.</h2>
+    <p>Try LeadPilot free for 14 days. One booked appointment pays for the year.</p>
+    <div class="hero-ctas">
+      <button class="btn btn-primary" onclick="scrollToDemo()">▶ Try the live demo</button>
+      <a class="btn btn-ghost" href="#pricing">Start free trial</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="margin-bottom: 10px;"><b style="color: var(--text);">LeadPilot</b> is a product of <b style="color: var(--brand-3);">Boldbeam</b> · boldbeam.io</div>
+  <div>
+    <a href="#">Privacy</a>·
+    <a href="#">Terms</a>·
+    <a href="#">Fair Housing</a>·
+    <a href="mailto:hello@boldbeam.io">hello@boldbeam.io</a>
+  </div>
+  <div style="margin-top: 18px; font-size: 11px; color: var(--muted-2);">© 2026 Boldbeam, Inc. LeadPilot is a trademark of Boldbeam, Inc.</div>
+</footer>
+
+<script>
+// ============ STATE ============
+const initialLeads = [
+  { id: 1, name: "Samantha Torres", initials: "ST", color: "linear-gradient(135deg, #f472b6, #c084fc)", source: "open", sourceLabel: "Open House", property: "412 Pine Hollow Dr · $485,000", time: "9 min ago", snippet: "Yes — we'd love to see it Thursday evening!", status: "hot", active: true },
+  { id: 2, name: "Kevin & Mia Patel", initials: "KP", color: "linear-gradient(135deg, #60a5fa, #34d399)", source: "zillow", sourceLabel: "Zillow", property: "2900 Harding Pike · $720,000", time: "22 min ago", snippet: "AI: Great — I've got you on for Friday at 10am.", status: "replied" },
+  { id: 3, name: "Aaron Whitfield", initials: "AW", color: "linear-gradient(135deg, #fb923c, #f472b6)", source: "fb", sourceLabel: "FB Ad", property: "2127 Hillcrest Ln · $389,000", time: "41 min ago", snippet: "AI: Happy to send the disclosure — here you go.", status: "replied" },
+  { id: 4, name: "Deborah Kim", initials: "DK", color: "linear-gradient(135deg, #a78bfa, #60a5fa)", source: "web", sourceLabel: "Website", property: "Seller inquiry · 38104", time: "1h ago", snippet: "AI: Saturday at 11am? Jordan will bring the CMA.", status: "hot" },
+  { id: 5, name: "Marcus Bell", initials: "MB", color: "linear-gradient(135deg, #34d399, #60a5fa)", source: "open", sourceLabel: "Open House", property: "412 Pine Hollow Dr · $485,000", time: "2h ago", snippet: "Buyer: Maybe — still comparing options.", status: "warm" },
+  { id: 6, name: "Rachel Nguyen", initials: "RN", color: "linear-gradient(135deg, #fb7185, #f59e0b)", source: "zillow", sourceLabel: "Zillow", property: "First-time buyer · $300-400k", time: "3h ago", snippet: "AI: Connecting you with a lender now.", status: "replied" },
+  { id: 7, name: "Tyler Reyes", initials: "TR", color: "linear-gradient(135deg, #60a5fa, #a78bfa)", source: "realtor", sourceLabel: "Realtor.com", property: "1880 Oakwood Ave · $625,000", time: "4h ago", snippet: "AI: Comps for that street — give me 1 min.", status: "replied" },
+  { id: 8, name: "Jordan Ellis", initials: "JE", color: "linear-gradient(135deg, #f59e0b, #f472b6)", source: "fb", sourceLabel: "FB Ad", property: "Investor lead · Nashville MSA", time: "5h ago", snippet: "AI: Sending last 30 days of flips now.", status: "replied" },
+  { id: 9, name: "Natalie Cruz", initials: "NC", color: "linear-gradient(135deg, #c084fc, #34d399)", source: "web", sourceLabel: "Website", property: "Home valuation · 37206", time: "7h ago", snippet: "AI: Your CMA is drafting — review tonight.", status: "replied" },
+  { id: 10, name: "Hector Alvarez", initials: "HA", color: "linear-gradient(135deg, #60a5fa, #f472b6)", source: "zillow", sourceLabel: "Zillow", property: "512 Elm St · $265,000", time: "8h ago", snippet: "AI: Still available — tour this weekend?", status: "replied" },
+];
+
+const scenarioPool = {
+  zillow: [
+    { name: "Brianna Cole", initials: "BC", color: "linear-gradient(135deg, #f472b6, #60a5fa)", source: "zillow", sourceLabel: "Zillow", property: "1205 Sunrise Ct · $510,000" },
+    { name: "Maya Bennett", initials: "MB", color: "linear-gradient(135deg, #34d399, #60a5fa)", source: "zillow", sourceLabel: "Zillow", property: "3321 Granville Rd · $410,000" },
+  ],
+  open: [
+    { name: "Priya Shankar", initials: "PS", color: "linear-gradient(135deg, #fb923c, #c084fc)", source: "open", sourceLabel: "Open House", property: "412 Pine Hollow Dr · $485,000" },
+    { name: "Carlos Velez", initials: "CV", color: "linear-gradient(135deg, #c084fc, #fb923c)", source: "open", sourceLabel: "Open House", property: "412 Pine Hollow Dr · $485,000" },
+  ],
+  fb: [
+    { name: "David Okafor", initials: "DO", color: "linear-gradient(135deg, #34d399, #a78bfa)", source: "fb", sourceLabel: "FB Ad", property: "Buyer consult · $450k-$600k" },
+    { name: "Jamie Rivera", initials: "JR", color: "linear-gradient(135deg, #60a5fa, #f472b6)", source: "fb", sourceLabel: "FB Ad", property: "Luxury buyer · $1M+" },
+  ],
+};
+
+let leads = [];
+let activeLeadId = 1;
+let simulatingLead = null;
+
+const conversations = {
+  1: [
+    { from: 'pilot', text: "Hi Samantha — this is Jordan's LeadPilot assistant at KW Nashville. Thanks for stopping by 412 Pine Hollow Dr today! Any questions I can answer?", time: "11:02 AM" },
+    { from: 'lead', text: "Thanks! Yes — is it still available?", time: "11:04 AM" },
+    { from: 'pilot', text: "It is! Offers are being reviewed Monday. Would you like to come back for a private showing before then?", time: "11:04 AM" },
+    { from: 'lead', text: "Yes — we'd love to see it Thursday evening!", time: "11:07 AM" },
+    { from: 'pilot', text: "Perfect — I've put you on Jordan's calendar for Thursday at 5:30pm. He'll text 15 minutes before. 🏡", time: "11:07 AM" },
+  ],
+  2: [
+    { from: 'pilot', text: "Hi Kevin — Jordan's LeadPilot assistant here. Thanks for the inquiry on 2900 Harding Pike! Are you and Mia pre-approved yet?", time: "10:40 AM" },
+    { from: 'lead', text: "Almost — working with our credit union this week. Still available?", time: "10:42 AM" },
+    { from: 'pilot', text: "It is. Since you're locking down financing, Jordan would love a quick buyer consult to map strategy. Friday 10am work?", time: "10:42 AM" },
+    { from: 'lead', text: "Works for us. Zoom?", time: "10:44 AM" },
+    { from: 'pilot', text: "Great — you're on for Friday at 10am. Zoom link on its way. 📅", time: "10:44 AM" },
+  ],
+  3: [
+    { from: 'pilot', text: "Hey Aaron — saw you clicked through on the 2127 Hillcrest Ln ad. Want the full listing PDF?", time: "10:21 AM" },
+    { from: 'lead', text: "Yes please. Also is there a seller disclosure?", time: "10:22 AM" },
+    { from: 'pilot', text: "Happy to send the disclosure doc — here you go. Let me know if you want to see it in person.", time: "10:22 AM" },
+  ],
+  4: [
+    { from: 'pilot', text: "Hi Deborah — saw you requested a home valuation on Jordan's site. Are you thinking of selling soon, or just browsing?", time: "9:58 AM" },
+    { from: 'lead', text: "Selling — probably late summer. House is on Gallatin Pike.", time: "10:02 AM" },
+    { from: 'pilot', text: "Jordan would love to meet. Saturday at 11am? He'll bring a full CMA and walk through your options.", time: "10:02 AM" },
+    { from: 'lead', text: "Saturday at 11 works.", time: "10:09 AM" },
+  ],
+  5: [
+    { from: 'pilot', text: "Hey Marcus — nice meeting you at the 412 Pine Hollow open house. Any questions on the property or the neighborhood?", time: "8:50 AM" },
+    { from: 'lead', text: "Maybe — still comparing options.", time: "8:57 AM" },
+  ],
+};
+
+// ============ RENDER ============
+function renderLeads() {
+  const list = document.getElementById('leadList');
+  list.innerHTML = '';
+  leads.forEach(lead => {
+    const el = document.createElement('div');
+    el.className = 'lead' + (lead.id === activeLeadId ? ' active' : '');
+    if (lead.isNew) el.classList.add('slide-in');
+    el.onclick = () => selectLead(lead.id);
+    let statusTag = '';
+    if (lead.status === 'hot') statusTag = '<span class="tag hot">🔥 Hot</span>';
+    else if (lead.status === 'warm') statusTag = '<span class="tag warm">Warm</span>';
+    else if (lead.status === 'replied') statusTag = '<span class="tag replied">Replied</span>';
+    else if (lead.status === 'responding') statusTag = '<span class="tag responding pulse">⚡ AI responding</span>';
+    el.innerHTML = `
+      <div class="lead-avatar" style="background: ${lead.color};">${lead.initials}</div>
+      <div class="lead-info">
+        <div class="lead-top">
+          <div class="lead-name">${lead.name}</div>
+          <div class="lead-time">${lead.time}</div>
+        </div>
+        <div class="lead-snip">${lead.snippet}</div>
+        <div class="lead-tags">
+          <span class="tag ${lead.source}">${lead.sourceLabel}</span>
+          ${statusTag}
+        </div>
+      </div>
+    `;
+    list.appendChild(el);
+  });
+  const hotCount = leads.filter(l => l.status === 'hot').length;
+  const repliedCount = leads.filter(l => l.status === 'replied' || l.status === 'hot').length;
+  document.getElementById('leadCountLabel').textContent = `${leads.length} leads · ${repliedCount} responded · ${hotCount} hot`;
+  document.getElementById('statLeads').textContent = leads.length;
+}
+
+function selectLead(id) {
+  activeLeadId = id;
+  renderLeads();
+  renderConvo();
+}
+
+function renderConvo() {
+  const lead = leads.find(l => l.id === activeLeadId);
+  if (!lead) return;
+  document.getElementById('convoAvatar').textContent = lead.initials;
+  document.getElementById('convoAvatar').style.background = lead.color;
+  document.getElementById('convoName').textContent = lead.name;
+  document.getElementById('convoMeta').textContent = `${lead.sourceLabel} · ${lead.property}`;
+  const statusEl = document.getElementById('convoStatus');
+  if (lead.status === 'hot') { statusEl.className = 'tag hot'; statusEl.textContent = '🔥 Hot — take over'; }
+  else if (lead.status === 'warm') { statusEl.className = 'tag warm'; statusEl.textContent = 'Warm'; }
+  else if (lead.status === 'responding') { statusEl.className = 'tag responding pulse'; statusEl.textContent = '⚡ AI responding'; }
+  else { statusEl.className = 'tag replied'; statusEl.textContent = 'AI handling'; }
+
+  const msgs = conversations[lead.id] || [];
+  const msgEl = document.getElementById('convoMessages');
+  msgEl.innerHTML = '';
+  msgs.forEach(m => appendMessage(m.from, m.text, m.time, false));
+
+  const takeover = document.getElementById('takeoverBanner');
+  if (lead.status === 'hot') {
+    takeover.style.display = 'flex';
+    document.getElementById('takeoverLead').textContent = lead.name.split(' ')[0];
+  } else {
+    takeover.style.display = 'none';
+  }
+  msgEl.scrollTop = msgEl.scrollHeight;
+}
+
+function appendMessage(from, text, time, animate = true) {
+  const msgEl = document.getElementById('convoMessages');
+  const div = document.createElement('div');
+  div.className = 'msg ' + (from === 'lead' ? 'lead' : (from === 'pilot' ? 'ai pilot' : 'ai'));
+  const metaLabel = from === 'pilot' ? '⚡ LeadPilot AI · ' : (from === 'lead' ? '' : 'Jordan · ');
+  div.innerHTML = `<div>${text}</div><div class="msg-meta">${metaLabel}${time}</div>`;
+  if (animate) div.classList.add('slide-in');
+  msgEl.appendChild(div);
+  msgEl.scrollTop = msgEl.scrollHeight;
+}
+
+function showTyping() {
+  const msgEl = document.getElementById('convoMessages');
+  const div = document.createElement('div');
+  div.className = 'msg ai pilot';
+  div.id = 'typingIndicator';
+  div.innerHTML = `<div class="typing"><span></span><span></span><span></span></div><div class="msg-meta">⚡ LeadPilot is drafting a reply…</div>`;
+  msgEl.appendChild(div);
+  msgEl.scrollTop = msgEl.scrollHeight;
+}
+
+function removeTyping() {
+  const el = document.getElementById('typingIndicator');
+  if (el) el.remove();
+}
+
+// ============ SIMULATION ============
+function simulate(sourceType) {
+  // Disable all scenario buttons during run
+  const btns = document.querySelectorAll('.scenario-btn');
+  btns.forEach(b => b.disabled = true);
+
+  const pool = scenarioPool[sourceType];
+  const pick = pool[Math.floor(Math.random() * pool.length)];
+  const newId = Math.max(...leads.map(l => l.id), 0) + 1;
+  const newLead = {
+    id: newId,
+    name: pick.name,
+    initials: pick.initials,
+    color: pick.color,
+    source: pick.source,
+    sourceLabel: pick.sourceLabel,
+    property: pick.property,
+    time: "just now",
+    snippet: "New lead — LeadPilot drafting response…",
+    status: "responding",
+    isNew: true,
+  };
+  leads.unshift(newLead);
+  simulatingLead = newLead;
+  conversations[newId] = [];
+  activeLeadId = newId;
+  renderLeads();
+  renderConvo();
+
+  setTimeout(() => {
+    showTyping();
+    setTimeout(() => {
+      removeTyping();
+      const text = buildAIResponse(newLead);
+      conversations[newId].push({ from: 'pilot', text: text, time: timeStamp() });
+      appendMessage('pilot', text, timeStamp(), true);
+      newLead.snippet = "AI: " + text.substring(0, 60) + (text.length > 60 ? "…" : "");
+      newLead.status = 'replied';
+      renderLeads();
+
+      // Update response time visually
+      document.getElementById('statResponse').textContent = (35 + Math.floor(Math.random() * 8)) + 's';
+
+      btns.forEach(b => b.disabled = false);
+      // Automatically queue up lead reply after 1.5s for a natural flow
+      setTimeout(() => simulateLeadReply(), 1500);
+    }, 2000);
+  }, 800);
+}
+
+function buildAIResponse(lead) {
+  const first = lead.name.split(' ')[0];
+  switch (lead.source) {
+    case 'zillow':
+      return `Hi ${first} — this is Jordan Reyes' LeadPilot assistant at KW Nashville. Thanks for the inquiry on ${lead.property.split(' · ')[0]}! Still available. Want to schedule a private showing this week?`;
+    case 'fb':
+      return `Hi ${first} — saw you clicked through on Jordan's ad. Quick question so I can help: are you pre-approved, or still working on financing?`;
+    case 'open':
+      return `Hi ${first} — this is LeadPilot, Jordan's assistant. Thanks for stopping by ${lead.property.split(' · ')[0]} today! Any questions on the property or the neighborhood?`;
+    case 'realtor':
+      return `Hey ${first} — Jordan Reyes here (via LeadPilot). Great question on ${lead.property.split(' · ')[0]}. Want me to send you comps + the seller disclosure?`;
+    default:
+      return `Hi ${first} — Jordan's assistant here. Thanks for reaching out. What neighborhoods are you focused on?`;
+  }
+}
+
+function simulateLeadReply() {
+  if (!simulatingLead) return;
+  const btns = document.querySelectorAll('.scenario-btn');
+  btns.forEach(b => b.disabled = true);
+
+  const replies = {
+    zillow: ["Yes! When's available for a showing?", "Still pre-approving. Can I see it this weekend?", "Interested — what's the HOA like?"],
+    open: ["Yes — we loved the kitchen. Can we come back Thursday?", "Yes please, want to see it again.", "Thanks, what did it end up listing at?"],
+    fb: ["Not pre-approved yet, but looking. Can you help?", "Already pre-approved at $550k.", "Still figuring out — what lenders do you work with?"],
+  };
+  const pool = replies[simulatingLead.source] || replies.zillow;
+  const reply = pool[Math.floor(Math.random() * pool.length)];
+
+  setTimeout(() => {
+    conversations[simulatingLead.id].push({ from: 'lead', text: reply, time: timeStamp() });
+    appendMessage('lead', reply, timeStamp(), true);
+    simulatingLead.snippet = reply;
+    renderLeads();
+
+    setTimeout(() => {
+      showTyping();
+      setTimeout(() => {
+        removeTyping();
+        const followUp = buildAIFollowUp(simulatingLead);
+        conversations[simulatingLead.id].push({ from: 'pilot', text: followUp, time: timeStamp() });
+        appendMessage('pilot', followUp, timeStamp(), true);
+        simulatingLead.snippet = "AI: " + followUp.substring(0, 60) + (followUp.length > 60 ? "…" : "");
+        simulatingLead.status = 'hot';
+        renderLeads();
+        renderConvo();
+        btns.forEach(b => b.disabled = false);
+      }, 1800);
+    }, 800);
+  }, 1400);
+}
+
+function buildAIFollowUp(lead) {
+  const first = lead.name.split(' ')[0];
+  return `Perfect — Jordan has Thursday at 5:30pm or Saturday at 10am open. Which works better for you, ${first}? 📅 Once you pick, I'll put it on his calendar and send you a confirmation.`;
+}
+
+function takeOver() {
+  const lead = leads.find(l => l.id === activeLeadId);
+  if (!lead) return;
+  lead.status = 'replied';
+  renderLeads();
+  renderConvo();
+  alert("Taken over! LeadPilot notified Jordan via push notification. All future messages route directly to Jordan.");
+}
+
+function resetDemo() {
+  leads = JSON.parse(JSON.stringify(initialLeads));
+  activeLeadId = 1;
+  renderLeads();
+  renderConvo();
+  document.getElementById('statResponse').textContent = '38s';
+}
+
+function scrollToDemo() {
+  document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Init
+resetDemo();
+</script>
+</body>
+</html>
