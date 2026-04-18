@@ -1,1162 +1,1628 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>LeadPilot by Boldbeam — AI Lead Response for Real Estate Agents</title>
-<meta name="description" content="LeadPilot replies to every real estate lead in under 60 seconds with AI. Built by Boldbeam. Try the live demo." />
-
-<!-- Open Graph (Facebook, LinkedIn, iMessage previews) -->
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="Boldbeam" />
-<meta property="og:title" content="LeadPilot — AI Lead Response for Real Estate Agents" />
-<meta property="og:description" content="Replies to every Zillow, Realtor.com, Facebook, and open-house lead in under 60 seconds. Try the live demo — no signup." />
-<meta property="og:url" content="https://boldbeam.io/" />
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="LeadPilot — AI Lead Response for Real Estate Agents" />
-<meta name="twitter:description" content="Replies to every real estate lead in under 60 seconds. Try the live demo." />
-
-<!-- Theme + favicon (inline SVG so no extra files needed) -->
-<meta name="theme-color" content="#6366F1" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%236366F1'/%3E%3Cstop offset='100%25' stop-color='%2322D3EE'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Ctext x='50' y='70' font-family='Arial,sans-serif' font-size='62' font-weight='800' text-anchor='middle' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boldbeam — The CRM built for professional services firms</title>
+<meta name="description" content="Boldbeam replaces Salesforce with a custom-built CRM purpose-designed for your consulting, advisory, or IT services firm — for 40% of the cost.">
+<meta property="og:title" content="Boldbeam — The CRM built for professional services firms">
+<meta property="og:description" content="Replace Salesforce with a custom CRM built for how your firm actually works. Cut your CRM costs 60%+.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230A0E27'/%3E%3Cpath d='M30 25 L30 75 L50 75 Q70 75 70 60 Q70 50 60 48 Q68 45 68 37 Q68 25 52 25 Z M42 35 L52 35 Q56 35 56 39 Q56 43 52 43 L42 43 Z M42 53 L54 53 Q60 53 60 58 Q60 63 54 63 L42 63 Z' fill='%23F59E0B'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0A0E1F;
-    --bg-2: #0F1530;
-    --card: #161D3F;
-    --card-2: #1D2654;
-    --line: #262F5E;
-    --text: #F1F5FF;
-    --muted: #8892B8;
-    --muted-2: #5B6690;
-    --brand: #6366F1;
-    --brand-2: #8B5CF6;
-    --brand-3: #A78BFA;
-    --accent: #22D3EE;
-    --pink: #EC4899;
-    --green: #10B981;
-    --amber: #F59E0B;
-    --red: #EF4444;
-    --blue: #3B82F6;
-  }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
-  body { min-height: 100vh; overflow-x: hidden; }
-  a { color: inherit; }
+:root {
+  --bg-deep: #0A0E27;
+  --bg-slate: #0F172A;
+  --bg-card: #1E293B;
+  --bg-card-light: #293548;
+  --border: #334155;
+  --border-light: #475569;
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --accent: #F59E0B;
+  --accent-hover: #FBBF24;
+  --accent-soft: rgba(245, 158, 11, 0.12);
+  --primary: #3B82F6;
+  --primary-soft: rgba(59, 130, 246, 0.12);
+  --success: #10B981;
+  --success-soft: rgba(16, 185, 129, 0.12);
+  --warn: #EF4444;
+  --warn-soft: rgba(239, 68, 68, 0.12);
+  --purple: #A78BFA;
+  --purple-soft: rgba(167, 139, 250, 0.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: 8px; font-weight: 600;
+  font-size: 15px; cursor: pointer; border: none;
+  transition: all 0.15s ease; text-decoration: none;
+  font-family: inherit;
+}
+.btn-primary { background: var(--accent); color: var(--bg-deep); }
+.btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+.btn-secondary { background: transparent; color: var(--text-primary); border: 1px solid var(--border-light); }
+.btn-secondary:hover { background: var(--bg-card); border-color: var(--text-muted); }
+.btn-ghost { background: transparent; color: var(--text-secondary); padding: 8px 14px; font-size: 14px; }
+.btn-ghost:hover { color: var(--text-primary); }
 
-  /* ============ TOP NAV ============ */
-  .topnav {
-    position: sticky; top: 0; z-index: 50;
-    backdrop-filter: blur(12px);
-    background: rgba(10, 14, 31, 0.85);
-    border-bottom: 1px solid var(--line);
-    padding: 14px 32px;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .parent-brand { display: flex; align-items: center; gap: 12px; }
-  .parent-logo {
-    width: 32px; height: 32px; border-radius: 8px;
-    background: linear-gradient(135deg, var(--brand), var(--brand-2), var(--pink));
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 800; color: white;
-    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
-  }
-  .brand-text { line-height: 1.15; }
-  .parent-name { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
-  .parent-tag { font-size: 11px; color: var(--muted); }
-  .nav-divider { margin: 0 14px; color: var(--muted-2); }
-  .product-name { font-weight: 700; font-size: 15px; color: var(--brand-3); }
-  .topnav-right { display: flex; align-items: center; gap: 20px; }
-  .topnav-right a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; }
-  .topnav-right a:hover { color: var(--text); }
-  .nav-btn {
-    background: linear-gradient(135deg, var(--brand), var(--brand-2));
-    color: white; padding: 8px 16px; border-radius: 8px;
-    font-weight: 600; font-size: 13px; border: none; cursor: pointer;
-    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
-  }
-  @media (max-width: 768px) {
-    .hide-mobile { display: none; }
-    .topnav { padding: 12px 18px; }
-  }
+/* NAV */
+nav.top {
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(12px);
+  background: rgba(10, 14, 39, 0.85);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; max-width: 1200px; margin: 0 auto; }
+.logo { display: flex; align-items: center; gap: 10px; font-family: 'Fraunces', serif; font-weight: 700; font-size: 22px; color: var(--text-primary); text-decoration: none; }
+.logo-mark {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--accent) 0%, #D97706 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fraunces', serif; font-weight: 700; color: var(--bg-deep);
+  font-size: 18px;
+}
+.nav-links { display: flex; gap: 4px; align-items: center; }
+.nav-links a { color: var(--text-secondary); font-size: 14px; font-weight: 500; text-decoration: none; padding: 8px 14px; border-radius: 6px; transition: all 0.15s; }
+.nav-links a:hover { color: var(--text-primary); background: var(--bg-card); }
 
-  /* ============ HERO ============ */
-  .hero {
-    padding: 80px 32px 60px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -200px; left: 50%; transform: translateX(-50%);
-    width: 800px; height: 800px;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, transparent 60%);
-    z-index: 0;
-  }
-  .hero-inner { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; }
-  .pill {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 6px 14px; border-radius: 40px;
-    background: rgba(99, 102, 241, 0.15);
-    border: 1px solid rgba(139, 92, 246, 0.35);
-    font-size: 12px; font-weight: 600; color: var(--brand-3);
-    margin-bottom: 20px;
-  }
-  .pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); animation: pulseDot 2s infinite; }
-  @keyframes pulseDot { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
-  .hero h1 {
-    font-size: clamp(32px, 6vw, 60px); line-height: 1.05;
-    font-weight: 800; letter-spacing: -0.03em;
-    margin: 0 0 20px;
-  }
-  .hero h1 .gradient {
-    background: linear-gradient(135deg, var(--brand-3), var(--accent));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .hero p {
-    font-size: clamp(15px, 2vw, 20px); color: var(--muted);
-    max-width: 640px; margin: 0 auto 32px; line-height: 1.6;
-  }
-  .hero-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-  .btn {
-    padding: 14px 24px; border-radius: 12px; font-weight: 600; font-size: 15px;
-    cursor: pointer; border: none; transition: transform 0.1s ease;
-    display: inline-flex; align-items: center; gap: 8px;
-    text-decoration: none;
-  }
-  .btn:hover { transform: translateY(-1px); }
-  .btn-primary {
-    background: linear-gradient(135deg, var(--brand), var(--brand-2));
-    color: white;
-    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.45);
-  }
-  .btn-ghost {
-    background: rgba(255, 255, 255, 0.06); color: var(--text);
-    border: 1px solid var(--line);
-  }
-  .hero-meta {
-    margin-top: 24px; color: var(--muted); font-size: 13px;
-    display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
-  }
-  .hero-meta span { display: flex; align-items: center; gap: 6px; }
+/* HERO */
+.hero { padding: 80px 0 60px; position: relative; overflow: hidden; }
+.hero::before {
+  content: ''; position: absolute; top: -20%; left: 50%; width: 800px; height: 600px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 60%);
+  transform: translateX(-50%); pointer-events: none;
+}
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px; border-radius: 999px;
+  background: var(--accent-soft); color: var(--accent);
+  font-size: 13px; font-weight: 600; margin-bottom: 24px;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+.eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.hero h1 { font-size: clamp(36px, 5.5vw, 64px); margin-bottom: 24px; max-width: 900px; }
+.hero h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
+.hero-sub { font-size: 20px; color: var(--text-secondary); max-width: 680px; margin-bottom: 36px; line-height: 1.5; }
+.hero-cta { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.hero-proof { margin-top: 48px; color: var(--text-muted); font-size: 14px; }
+.hero-proof strong { color: var(--text-secondary); font-weight: 600; }
 
-  /* ============ STATS STRIP ============ */
-  .stats-strip {
-    max-width: 1100px; margin: 40px auto 80px;
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 1px; background: var(--line);
-    border-radius: 16px; overflow: hidden;
-    border: 1px solid var(--line);
-  }
-  .strip-stat { background: var(--bg-2); padding: 20px; text-align: center; }
-  .strip-stat .num { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; }
-  .strip-stat .num .g { background: linear-gradient(135deg, var(--brand-2), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .strip-stat .lbl { font-size: 12px; color: var(--muted); margin-top: 4px; }
-  @media (max-width: 768px) { .stats-strip { grid-template-columns: repeat(2, 1fr); } }
+/* PAIN SECTION */
+.pain { padding: 80px 0; background: var(--bg-slate); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.section-head { text-align: center; margin-bottom: 60px; }
+.section-head h2 { font-size: clamp(28px, 4vw, 44px); margin-bottom: 16px; }
+.section-head p { font-size: 18px; color: var(--text-secondary); max-width: 640px; margin: 0 auto; }
+.pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+.pain-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 28px;
+  transition: all 0.2s;
+}
+.pain-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.pain-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--warn-soft); color: var(--warn); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 22px; }
+.pain-card h3 { font-size: 20px; margin-bottom: 10px; color: var(--text-primary); font-family: 'Inter', sans-serif; font-weight: 600; }
+.pain-card p { color: var(--text-secondary); font-size: 15px; }
+.pain-card .stat { color: var(--accent); font-weight: 600; }
 
-  /* ============ PROBLEM SECTION ============ */
-  .section { padding: 80px 32px; max-width: 1200px; margin: 0 auto; }
-  .section-eyebrow { color: var(--accent); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; text-align: center; margin-bottom: 12px; }
-  .section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; letter-spacing: -0.02em; text-align: center; margin: 0 0 16px; }
-  .section-sub { font-size: 16px; color: var(--muted); text-align: center; max-width: 640px; margin: 0 auto 50px; line-height: 1.6; }
+/* DEMO SECTION */
+.demo-section { padding: 80px 0; }
+.demo-intro { text-align: center; margin-bottom: 40px; }
+.demo-intro h2 { font-size: clamp(28px, 4vw, 44px); margin-bottom: 16px; }
+.demo-intro p { font-size: 18px; color: var(--text-secondary); max-width: 680px; margin: 0 auto 12px; }
+.demo-intro .persona { font-size: 14px; color: var(--text-muted); font-style: italic; }
 
-  .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  @media (max-width: 768px) { .vs-grid { grid-template-columns: 1fr; } }
-  .vs-card {
-    background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 28px;
-  }
-  .vs-card.bad { border-color: rgba(239, 68, 68, 0.35); }
-  .vs-card.good { border-color: rgba(16, 185, 129, 0.35); background: linear-gradient(135deg, var(--card), rgba(16, 185, 129, 0.05)); }
-  .vs-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
-  .vs-card.bad .vs-title { color: #FCA5A5; }
-  .vs-card.good .vs-title { color: #6EE7B7; }
-  .vs-big { font-size: 38px; font-weight: 800; letter-spacing: -0.02em; margin: 8px 0; }
-  .vs-card.bad .vs-big { color: #FCA5A5; }
-  .vs-card.good .vs-big { color: #6EE7B7; }
-  .vs-desc { color: var(--muted); font-size: 14px; line-height: 1.6; }
-  .vs-list { margin-top: 16px; }
-  .vs-list li { color: var(--muted); font-size: 14px; margin-bottom: 8px; list-style: none; display: flex; align-items: flex-start; gap: 8px; }
-  .vs-list li::before { content: ''; width: 8px; height: 8px; border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
-  .vs-card.bad .vs-list li::before { background: #FCA5A5; }
-  .vs-card.good .vs-list li::before { background: #6EE7B7; }
+.demo-app {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.demo-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 20px;
+  background: var(--bg-slate);
+  border-bottom: 1px solid var(--border);
+}
+.demo-header-left { display: flex; align-items: center; gap: 14px; }
+.traffic-lights { display: flex; gap: 6px; }
+.traffic-lights span { width: 11px; height: 11px; border-radius: 50%; background: #475569; }
+.traffic-lights span:nth-child(1) { background: #EF4444; }
+.traffic-lights span:nth-child(2) { background: #F59E0B; }
+.traffic-lights span:nth-child(3) { background: #10B981; }
+.demo-url { font-size: 12px; color: var(--text-muted); padding: 4px 10px; background: var(--bg-card); border-radius: 6px; border: 1px solid var(--border); font-family: 'SF Mono', Menlo, monospace; }
+.demo-user { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-secondary); }
+.user-avatar { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #6366F1, #A855F7); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 12px; color: white; }
 
-  /* ============ DEMO SECTION ============ */
-  .demo-wrap {
-    margin: 0 auto 80px;
-    padding: 0 16px;
-    max-width: 1360px;
-  }
-  .demo-frame {
-    background: var(--bg-2);
-    border: 1px solid var(--line);
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(139, 92, 246, 0.15);
-  }
-  .demo-bar {
-    background: var(--card);
-    padding: 12px 18px;
-    border-bottom: 1px solid var(--line);
-    display: flex; align-items: center; gap: 14px;
-  }
-  .browser-dots { display: flex; gap: 6px; }
-  .dot-red { width: 11px; height: 11px; border-radius: 50%; background: #FF5F57; }
-  .dot-yel { width: 11px; height: 11px; border-radius: 50%; background: #FEBC2E; }
-  .dot-grn { width: 11px; height: 11px; border-radius: 50%; background: #28C840; }
-  .browser-url {
-    flex: 1; background: var(--bg); border-radius: 6px;
-    padding: 6px 14px; font-size: 12px; color: var(--muted);
-    font-family: ui-monospace, monospace;
-  }
-  .browser-url .lock { color: var(--green); margin-right: 6px; }
+.demo-body { display: grid; grid-template-columns: 220px 1fr; min-height: 680px; }
+.demo-nav {
+  background: var(--bg-slate);
+  border-right: 1px solid var(--border);
+  padding: 16px 12px;
+}
+.demo-firm {
+  padding: 12px; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+  border-radius: 8px; background: var(--bg-card);
+  border: 1px solid var(--border);
+}
+.firm-avatar { width: 32px; height: 32px; border-radius: 6px; background: linear-gradient(135deg, var(--accent) 0%, #D97706 100%); display: flex; align-items: center; justify-content: center; color: var(--bg-deep); font-weight: 700; font-size: 13px; }
+.firm-info { font-size: 13px; }
+.firm-name { font-weight: 600; color: var(--text-primary); }
+.firm-role { color: var(--text-muted); font-size: 11px; }
+.nav-section-title { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); padding: 10px 12px 6px; font-weight: 600; }
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 12px; border-radius: 6px;
+  color: var(--text-secondary); cursor: pointer;
+  font-size: 14px; font-weight: 500;
+  transition: all 0.15s; margin-bottom: 2px;
+  border: none; background: transparent; width: 100%;
+  text-align: left; font-family: inherit;
+}
+.nav-item:hover { background: var(--bg-card); color: var(--text-primary); }
+.nav-item.active { background: var(--accent-soft); color: var(--accent); }
+.nav-item .icon { font-size: 16px; width: 18px; display: flex; align-items: center; justify-content: center; }
+.nav-item .badge { margin-left: auto; background: var(--accent); color: var(--bg-deep); font-size: 10px; padding: 2px 6px; border-radius: 10px; font-weight: 700; }
 
-  .scenario-bar {
-    background: linear-gradient(135deg, #1A2149, #1F1941);
-    border-bottom: 1px solid var(--line);
-    padding: 16px 20px;
-    display: flex; align-items: center; justify-content: space-between; gap: 16px;
-    flex-wrap: wrap;
-  }
-  .scenario-left { display: flex; flex-direction: column; gap: 2px; }
-  .scenario-label { font-size: 12px; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
-  .scenario-title { font-size: 14px; font-weight: 600; }
-  .scenario-btns { display: flex; gap: 8px; flex-wrap: wrap; }
-  .scenario-btn {
-    padding: 8px 14px; border-radius: 8px; border: 1px solid var(--line);
-    background: rgba(99, 102, 241, 0.1); color: var(--text);
-    font-size: 12px; font-weight: 600; cursor: pointer;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .scenario-btn:hover { background: rgba(99, 102, 241, 0.2); border-color: var(--brand); }
-  .scenario-btn.primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); border: none; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35); }
+.demo-content { overflow: auto; background: var(--bg-card); }
+.view { display: none; padding: 24px 28px; animation: fadeIn 0.25s ease; }
+.view.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
-  /* ============ APP (embedded dashboard) ============ */
-  .app { background: var(--bg-2); }
-  .app-nav {
-    padding: 14px 22px; border-bottom: 1px solid var(--line);
-    display: flex; align-items: center; justify-content: space-between;
-    background: var(--bg-2);
-  }
-  .app-brand { display: flex; align-items: center; gap: 10px; }
-  .app-logo {
-    width: 30px; height: 30px; border-radius: 8px;
-    background: linear-gradient(135deg, var(--brand), var(--accent));
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 800; color: white; font-size: 14px;
-    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
-  }
-  .app-name { font-weight: 700; letter-spacing: -0.01em; font-size: 15px; }
-  .app-agent { display: flex; align-items: center; gap: 8px; }
-  .app-avatar {
-    width: 32px; height: 32px; border-radius: 50%;
-    background: linear-gradient(135deg, #60a5fa, #a78bfa);
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700; color: white; font-size: 13px;
-  }
-  .app-agent-meta { line-height: 1.15; font-size: 12px; }
-  .app-agent-name { font-weight: 600; }
-  .app-agent-sub { color: var(--muted); font-size: 10px; }
+.view-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.view-title { font-size: 22px; font-weight: 600; font-family: 'Fraunces', serif; color: var(--text-primary); }
+.view-sub { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+.view-actions { display: flex; gap: 8px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px; border-radius: 6px;
+  background: var(--bg-card-light); color: var(--text-secondary);
+  font-size: 13px; font-weight: 500;
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+.chip:hover { border-color: var(--border-light); }
+.chip.primary { background: var(--accent); color: var(--bg-deep); border-color: var(--accent); font-weight: 600; }
 
-  .app-live-banner {
-    padding: 10px 22px;
-    background: linear-gradient(90deg, rgba(99, 102, 241, 0.15), rgba(34, 211, 238, 0.12));
-    border-bottom: 1px solid var(--line);
-    font-size: 12px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); animation: pulseDot 1.5s infinite; box-shadow: 0 0 10px var(--green); }
-  .app-live-banner b { color: var(--brand-3); }
+/* KPI ROW */
+.kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+.kpi { background: var(--bg-slate); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+.kpi-label { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+.kpi-value { font-size: 22px; font-weight: 700; font-family: 'Fraunces', serif; color: var(--text-primary); }
+.kpi-delta { font-size: 12px; margin-top: 4px; }
+.kpi-delta.up { color: var(--success); }
+.kpi-delta.down { color: var(--warn); }
 
-  .app-body { padding: 20px 22px 24px; }
-  .app-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 18px; }
-  @media (max-width: 768px) { .app-stats { grid-template-columns: repeat(2, 1fr); } }
-  .app-stat {
-    background: var(--card); border: 1px solid var(--line);
-    border-radius: 12px; padding: 14px 16px;
-  }
-  .app-stat-lbl { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
-  .app-stat-val { font-size: 22px; font-weight: 700; margin-top: 4px; letter-spacing: -0.02em; }
-  .app-stat-sub { font-size: 10px; color: var(--green); margin-top: 2px; }
-  .app-stat-sub.amber { color: var(--amber); }
+/* PIPELINE */
+.pipeline {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;
+  min-height: 480px;
+}
+.stage {
+  background: var(--bg-slate); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px; display: flex; flex-direction: column;
+}
+.stage-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.stage-title { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+.stage-count { font-size: 11px; color: var(--text-muted); background: var(--bg-card); padding: 2px 7px; border-radius: 10px; }
+.stage-total { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.deals { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.deal {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px; cursor: grab;
+  transition: all 0.15s;
+}
+.deal:hover { border-color: var(--accent); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+.deal-name { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+.deal-amount { font-size: 13px; color: var(--accent); font-weight: 600; margin-bottom: 6px; }
+.deal-meta { display: flex; justify-content: space-between; align-items: center; }
+.deal-owner { width: 22px; height: 22px; border-radius: 50%; background: var(--primary-soft); color: var(--primary); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.deal-days { font-size: 11px; color: var(--text-muted); }
+.deal-days.stale { color: var(--warn); }
 
-  .app-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 14px; }
-  @media (max-width: 900px) { .app-grid { grid-template-columns: 1fr; } }
+/* CLIENTS TABLE */
+.table-wrap { background: var(--bg-slate); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+table { width: 100%; border-collapse: collapse; }
+thead { background: var(--bg-card-light); }
+th { padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--border); }
+td { padding: 14px 16px; font-size: 14px; color: var(--text-primary); border-bottom: 1px solid var(--border); }
+tr:last-child td { border-bottom: none; }
+tbody tr { cursor: pointer; transition: all 0.15s; }
+tbody tr:hover { background: var(--bg-card-light); }
+.client-cell { display: flex; align-items: center; gap: 10px; }
+.client-logo { width: 30px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; color: white; flex-shrink: 0; }
+.client-industry { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.tag { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+.tag.green { background: var(--success-soft); color: var(--success); }
+.tag.amber { background: var(--accent-soft); color: var(--accent); }
+.tag.blue { background: var(--primary-soft); color: var(--primary); }
 
-  .panel {
-    background: var(--card); border: 1px solid var(--line);
-    border-radius: 14px; overflow: hidden;
-  }
-  .panel-h {
-    padding: 14px 16px; border-bottom: 1px solid var(--line);
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .panel-h .ttl { font-size: 13px; font-weight: 600; }
-  .panel-h .sub { font-size: 11px; color: var(--muted); }
+/* ENGAGEMENTS */
+.engagement-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.engagement {
+  background: var(--bg-slate); border: 1px solid var(--border);
+  border-radius: 12px; padding: 20px;
+  transition: all 0.2s;
+}
+.engagement:hover { border-color: var(--accent); }
+.eng-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; }
+.eng-title { font-size: 16px; font-weight: 600; color: var(--text-primary); }
+.eng-client { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+.eng-status { font-size: 11px; padding: 4px 10px; border-radius: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+.eng-status.active { background: var(--success-soft); color: var(--success); }
+.eng-status.risk { background: var(--warn-soft); color: var(--warn); }
+.eng-status.closing { background: var(--primary-soft); color: var(--primary); }
+.eng-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.eng-meta-item { }
+.eng-meta-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 3px; }
+.eng-meta-value { font-size: 14px; color: var(--text-primary); font-weight: 600; }
+.progress-track { height: 6px; background: var(--bg-card-light); border-radius: 3px; overflow: hidden; margin: 8px 0 4px; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-hover)); border-radius: 3px; }
+.progress-fill.warn { background: linear-gradient(90deg, var(--warn), #F87171); }
+.progress-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); }
+.eng-team { display: flex; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); align-items: center; justify-content: space-between; }
+.team-avatars { display: flex; }
+.team-avatar { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--bg-slate); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 10px; color: white; margin-left: -6px; }
+.team-avatar:first-child { margin-left: 0; }
+.eng-next { font-size: 12px; color: var(--text-secondary); }
 
-  .lead-list { max-height: 480px; overflow-y: auto; }
-  .lead {
-    padding: 12px 16px; border-bottom: 1px solid var(--line);
-    cursor: pointer; display: flex; gap: 10px; align-items: flex-start;
-    transition: background 0.15s ease;
-  }
-  .lead:hover { background: rgba(99, 102, 241, 0.06); }
-  .lead.active { background: rgba(99, 102, 241, 0.12); border-left: 3px solid var(--brand); padding-left: 13px; }
-  .lead-avatar {
-    width: 34px; height: 34px; min-width: 34px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700; color: white; font-size: 12px;
-  }
-  .lead-info { flex: 1; min-width: 0; }
-  .lead-top { display: flex; justify-content: space-between; gap: 8px; }
-  .lead-name { font-weight: 600; font-size: 13px; }
-  .lead-time { font-size: 10px; color: var(--muted); white-space: nowrap; }
-  .lead-snip { font-size: 11px; color: var(--muted); margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .lead-tags { margin-top: 6px; display: flex; gap: 5px; flex-wrap: wrap; }
-  .tag {
-    font-size: 9px; padding: 2px 7px; border-radius: 20px;
-    background: rgba(255, 255, 255, 0.06); color: var(--muted);
-    border: 1px solid var(--line); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600;
-  }
-  .tag.zillow { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border-color: rgba(59, 130, 246, 0.3); }
-  .tag.fb { background: rgba(29, 78, 216, 0.18); color: #93c5fd; border-color: rgba(29, 78, 216, 0.3); }
-  .tag.open { background: rgba(236, 72, 153, 0.15); color: #f9a8d4; border-color: rgba(236, 72, 153, 0.3); }
-  .tag.web { background: rgba(16, 185, 129, 0.15); color: #6ee7b7; border-color: rgba(16, 185, 129, 0.3); }
-  .tag.realtor { background: rgba(245, 158, 11, 0.15); color: #fcd34d; border-color: rgba(245, 158, 11, 0.3); }
-  .tag.hot { background: rgba(239, 68, 68, 0.2); color: #fca5a5; border-color: rgba(239, 68, 68, 0.4); }
-  .tag.warm { background: rgba(245, 158, 11, 0.15); color: #fcd34d; border-color: rgba(245, 158, 11, 0.3); }
-  .tag.replied { background: rgba(16, 185, 129, 0.18); color: #6ee7b7; border-color: rgba(16, 185, 129, 0.3); }
-  .tag.responding { background: rgba(139, 92, 246, 0.2); color: #c4b5fd; border-color: rgba(139, 92, 246, 0.4); }
-  .pulse { animation: pulse 1.4s infinite; }
-  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
-  .slide-in { animation: slidein 0.45s ease; }
-  @keyframes slidein { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+/* UTILIZATION */
+.util-grid { display: flex; flex-direction: column; gap: 10px; }
+.util-row {
+  display: grid; grid-template-columns: 200px 80px 1fr 100px;
+  gap: 16px; align-items: center;
+  background: var(--bg-slate); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 18px;
+}
+.util-person { display: flex; align-items: center; gap: 10px; }
+.util-avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; color: white; }
+.util-name { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+.util-title { font-size: 11px; color: var(--text-muted); }
+.util-pct { font-size: 18px; font-weight: 700; font-family: 'Fraunces', serif; text-align: center; }
+.util-pct.good { color: var(--success); }
+.util-pct.warn { color: var(--warn); }
+.util-pct.mid { color: var(--accent); }
+.util-bar { position: relative; height: 34px; background: var(--bg-card-light); border-radius: 6px; overflow: hidden; display: flex; }
+.util-chunk { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: white; padding: 0 8px; white-space: nowrap; overflow: hidden; }
+.util-chunk.c1 { background: rgba(59, 130, 246, 0.6); }
+.util-chunk.c2 { background: rgba(167, 139, 250, 0.6); }
+.util-chunk.c3 { background: rgba(16, 185, 129, 0.6); }
+.util-chunk.c4 { background: rgba(245, 158, 11, 0.6); }
+.util-bench { background: rgba(148, 163, 184, 0.15); color: var(--text-muted); }
+.util-capacity { text-align: right; font-size: 12px; color: var(--text-secondary); }
 
-  .convo { display: flex; flex-direction: column; height: 480px; }
-  .convo-header { padding: 14px 16px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
-  .convo-lead { display: flex; gap: 10px; align-items: center; }
-  .convo-lead-info { line-height: 1.15; }
-  .convo-lead-name { font-weight: 600; font-size: 13px; }
-  .convo-lead-meta { font-size: 10px; color: var(--muted); }
-  .convo-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
-  .msg { max-width: 80%; padding: 10px 13px; border-radius: 14px; font-size: 12.5px; line-height: 1.45; }
-  .msg.ai { align-self: flex-start; background: var(--card-2); border: 1px solid var(--line); }
-  .msg.ai.pilot {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(34, 211, 238, 0.12));
-    border-color: rgba(99, 102, 241, 0.35);
-  }
-  .msg.lead { align-self: flex-end; background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: white; }
-  .msg-meta { font-size: 9.5px; color: var(--muted); margin-top: 4px; }
-  .msg.ai.pilot .msg-meta { color: var(--brand-3); }
-  .msg.lead .msg-meta { color: rgba(255, 255, 255, 0.85); }
-  .typing { display: flex; gap: 4px; padding: 4px 0; }
-  .typing span { width: 7px; height: 7px; border-radius: 50%; background: var(--brand-3); animation: bounce 1.4s infinite; }
-  .typing span:nth-child(2) { animation-delay: 0.2s; }
-  .typing span:nth-child(3) { animation-delay: 0.4s; }
-  @keyframes bounce { 0%,100% { transform: translateY(0); opacity: 0.4; } 50% { transform: translateY(-6px); opacity: 1; } }
+/* AI INBOX */
+.ai-banner {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.12) 0%, rgba(59, 130, 246, 0.12) 100%);
+  border: 1px solid var(--purple); border-radius: 10px;
+  padding: 14px 18px; margin-bottom: 20px;
+}
+.ai-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--purple-soft); color: var(--purple); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.ai-banner-text { flex: 1; }
+.ai-banner-title { font-weight: 600; color: var(--text-primary); font-size: 14px; }
+.ai-banner-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
 
-  .convo-footer { padding: 12px 16px; border-top: 1px solid var(--line); background: var(--card-2); }
-  .convo-input { display: flex; gap: 10px; align-items: center; }
-  .fake-input { flex: 1; padding: 9px 12px; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; font-size: 12px; color: var(--muted); }
-  .takeover-banner {
-    background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.3);
-    color: #fecaca; padding: 9px 12px; border-radius: 8px; font-size: 11px;
-    display: flex; justify-content: space-between; align-items: center; gap: 10px;
-    margin: 0 16px 10px;
-  }
-  .mini-btn { background: var(--green); color: white; border: none; border-radius: 6px; padding: 5px 10px; font-size: 11px; font-weight: 600; cursor: pointer; }
+.ai-item {
+  background: var(--bg-slate); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 18px; margin-bottom: 10px;
+}
+.ai-item-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.ai-item-title { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+.ai-item-time { font-size: 11px; color: var(--text-muted); }
+.ai-item-body { font-size: 13px; color: var(--text-secondary); line-height: 1.55; margin-bottom: 10px; }
+.ai-item-body em { color: var(--purple); font-style: normal; background: var(--purple-soft); padding: 1px 5px; border-radius: 3px; }
+.ai-actions { display: flex; gap: 8px; }
+.ai-btn { padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 600; border: none; cursor: pointer; font-family: inherit; }
+.ai-btn.primary { background: var(--accent); color: var(--bg-deep); }
+.ai-btn.primary:hover { background: var(--accent-hover); }
+.ai-btn.secondary { background: var(--bg-card-light); color: var(--text-secondary); border: 1px solid var(--border); }
+.ai-btn.secondary:hover { background: var(--bg-card); color: var(--text-primary); }
 
-  /* ============ HOW IT WORKS ============ */
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  @media (max-width: 900px) { .steps { grid-template-columns: 1fr; } }
-  .step-card {
-    background: var(--card); border: 1px solid var(--line);
-    border-radius: 18px; padding: 28px 26px;
-    position: relative;
-    transition: transform 0.2s ease, border-color 0.2s ease;
-  }
-  .step-card:hover { transform: translateY(-4px); border-color: var(--brand); }
-  .step-num {
-    width: 36px; height: 36px; border-radius: 10px;
-    background: linear-gradient(135deg, var(--brand), var(--brand-2));
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 800; font-size: 15px; margin-bottom: 16px;
-    box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
-  }
-  .step-card h3 { margin: 0 0 8px; font-size: 18px; letter-spacing: -0.01em; }
-  .step-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
-  .step-card ul { margin: 12px 0 0; padding-left: 0; list-style: none; }
-  .step-card ul li {
-    font-size: 13px; color: var(--muted); padding: 5px 0; padding-left: 20px; position: relative;
-  }
-  .step-card ul li::before {
-    content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700;
-  }
+/* DIFFERENTIATION CALLOUT */
+.diff-callout {
+  background: var(--bg-card-light);
+  border-left: 3px solid var(--accent);
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin: 20px 0 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.diff-callout strong { color: var(--accent); }
 
-  /* ============ SOCIAL PROOF ============ */
-  .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  @media (max-width: 900px) { .quotes { grid-template-columns: 1fr; } }
-  .quote-card {
-    background: var(--card); border: 1px solid var(--line);
-    border-radius: 16px; padding: 22px;
-  }
-  .stars { color: var(--amber); font-size: 13px; margin-bottom: 10px; }
-  .quote { font-size: 14px; line-height: 1.6; margin: 0 0 16px; }
-  .quote-person { display: flex; align-items: center; gap: 10px; }
-  .quote-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #60a5fa, #a78bfa); display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; font-size: 13px; }
-  .quote-name { font-size: 13px; font-weight: 600; }
-  .quote-role { font-size: 11px; color: var(--muted); }
+/* OFFER SECTION */
+.offer { padding: 80px 0; background: var(--bg-slate); border-top: 1px solid var(--border); }
+.offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+.offer-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 30px; position: relative;
+  transition: all 0.2s;
+}
+.offer-card.featured { border: 2px solid var(--accent); transform: scale(1.02); }
+.offer-card.featured::before {
+  content: 'MOST POPULAR'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--accent); color: var(--bg-deep); font-size: 10px; font-weight: 700;
+  padding: 4px 12px; border-radius: 10px; letter-spacing: 0.1em;
+}
+.offer-name { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; margin-bottom: 6px; }
+.offer-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 18px; min-height: 36px; }
+.offer-price { font-size: 32px; font-weight: 700; font-family: 'Fraunces', serif; margin-bottom: 4px; }
+.offer-price small { font-size: 14px; color: var(--text-muted); font-weight: 400; }
+.offer-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 22px; }
+.offer-list { list-style: none; margin-bottom: 24px; }
+.offer-list li { font-size: 14px; color: var(--text-secondary); padding: 6px 0 6px 24px; position: relative; }
+.offer-list li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+.offer-card .btn { width: 100%; justify-content: center; }
 
-  /* ============ PRICING ============ */
-  .pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 1000px; margin: 0 auto; }
-  @media (max-width: 900px) { .pricing { grid-template-columns: 1fr; } }
-  .plan {
-    background: var(--card); border: 1px solid var(--line);
-    border-radius: 18px; padding: 28px; position: relative;
-  }
-  .plan.featured {
-    border-color: var(--brand); border-width: 2px;
-    background: linear-gradient(135deg, var(--card), rgba(99, 102, 241, 0.08));
-    transform: scale(1.02);
-  }
-  .plan-badge {
-    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-    background: linear-gradient(135deg, var(--brand), var(--brand-2));
-    color: white; padding: 4px 12px; border-radius: 20px;
-    font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
-  }
-  .plan-name { font-size: 14px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
-  .plan-price { font-size: 44px; font-weight: 800; letter-spacing: -0.03em; }
-  .plan-price span { font-size: 14px; color: var(--muted); font-weight: 500; }
-  .plan-desc { color: var(--muted); font-size: 13px; margin: 8px 0 22px; }
-  .plan ul { list-style: none; padding: 0; margin: 0 0 24px; }
-  .plan ul li { padding: 7px 0; padding-left: 24px; position: relative; font-size: 13.5px; color: var(--text); }
-  .plan ul li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
-  .plan ul li.dim { color: var(--muted); }
-  .plan-btn { width: 100%; }
+/* FAQ */
+.faq { padding: 80px 0; }
+.faq-list { max-width: 800px; margin: 40px auto 0; }
+.faq-item {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 10px; margin-bottom: 12px; overflow: hidden;
+}
+.faq-q {
+  padding: 18px 22px; display: flex; align-items: center; justify-content: space-between;
+  cursor: pointer; font-weight: 600; font-size: 16px; color: var(--text-primary);
+  background: none; border: none; width: 100%; text-align: left; font-family: inherit;
+}
+.faq-q:hover { background: var(--bg-card-light); }
+.faq-toggle { font-size: 18px; color: var(--accent); transition: transform 0.2s; }
+.faq-item.open .faq-toggle { transform: rotate(45deg); }
+.faq-a { padding: 0 22px 22px; color: var(--text-secondary); font-size: 14px; line-height: 1.7; display: none; }
+.faq-item.open .faq-a { display: block; }
 
-  /* ============ FAQ ============ */
-  .faq-list { max-width: 720px; margin: 0 auto; }
-  .faq-item {
-    border: 1px solid var(--line); border-radius: 14px;
-    padding: 18px 22px; margin-bottom: 12px;
-    background: var(--card); cursor: pointer;
-    transition: border-color 0.2s ease;
-  }
-  .faq-item:hover { border-color: var(--brand); }
-  .faq-item[open] { border-color: var(--brand); }
-  .faq-item summary { font-weight: 600; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center; }
-  .faq-item summary::-webkit-details-marker { display: none; }
-  .faq-item summary::after { content: '+'; color: var(--muted); font-size: 20px; }
-  .faq-item[open] summary::after { content: '−'; color: var(--brand-3); }
-  .faq-item p { color: var(--muted); font-size: 14px; line-height: 1.6; margin: 12px 0 0; }
+/* CTA FINAL */
+.final-cta { padding: 80px 0; text-align: center; background: linear-gradient(180deg, var(--bg-deep) 0%, #1E1B3B 100%); border-top: 1px solid var(--border); }
+.final-cta h2 { font-size: clamp(32px, 4.5vw, 48px); margin-bottom: 20px; }
+.final-cta p { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto 32px; }
 
-  /* ============ FINAL CTA ============ */
-  .final-cta {
-    background: linear-gradient(135deg, #1F1B4E, #2D1E5B, #1A2149);
-    margin: 0 32px 80px; padding: 60px 32px;
-    border-radius: 28px; text-align: center;
-    border: 1px solid rgba(139, 92, 246, 0.35);
-    position: relative; overflow: hidden;
-  }
-  .final-cta::before {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(circle at 30% 50%, rgba(99, 102, 241, 0.25), transparent 50%),
-                radial-gradient(circle at 70% 50%, rgba(34, 211, 238, 0.2), transparent 50%);
-  }
-  .final-cta-inner { position: relative; z-index: 1; }
-  .final-cta h2 { font-size: clamp(26px, 4vw, 40px); font-weight: 800; letter-spacing: -0.02em; margin: 0 0 12px; }
-  .final-cta p { color: var(--muted); font-size: 16px; max-width: 540px; margin: 0 auto 26px; }
+/* FOOTER */
+footer { padding: 40px 0; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-muted); }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text-primary); }
 
-  /* ============ FOOTER ============ */
-  footer {
-    border-top: 1px solid var(--line);
-    padding: 40px 32px;
-    text-align: center;
-    color: var(--muted);
-    font-size: 13px;
-  }
-  footer a { color: var(--muted); text-decoration: none; margin: 0 10px; }
-  footer a:hover { color: var(--brand-3); }
-
+@media (max-width: 900px) {
+  .demo-body { grid-template-columns: 1fr; }
+  .demo-nav { display: none; }
+  .pipeline { grid-template-columns: 1fr; }
+  .engagement-grid { grid-template-columns: 1fr; }
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
+  .util-row { grid-template-columns: 1fr; gap: 8px; }
+  .offer-grid { grid-template-columns: 1fr; }
+  .offer-card.featured { transform: none; }
+  .nav-links { display: none; }
+}
 </style>
 </head>
 <body>
 
-<!-- ============ TOP NAV ============ -->
-<nav class="topnav">
-  <div style="display: flex; align-items: center;">
-    <div class="parent-brand">
-      <div class="parent-logo">B</div>
-      <div class="brand-text">
-        <div class="parent-name">Boldbeam</div>
-        <div class="parent-tag">AI products for service businesses</div>
-      </div>
+<nav class="top">
+  <div class="nav-inner">
+    <a href="#top" class="logo">
+      <span class="logo-mark">B</span>
+      <span>Boldbeam</span>
+    </a>
+    <div class="nav-links">
+      <a href="#why">Why replace Salesforce</a>
+      <a href="#demo">Live demo</a>
+      <a href="#offer">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact" class="btn btn-primary" style="padding: 8px 18px; font-size: 14px;">Book a call</a>
     </div>
-    <span class="nav-divider">/</span>
-    <div class="product-name">LeadPilot</div>
-  </div>
-  <div class="topnav-right">
-    <a class="hide-mobile" href="#how">How it works</a>
-    <a class="hide-mobile" href="#demo">Demo</a>
-    <a class="hide-mobile" href="#pricing">Pricing</a>
-    <a class="hide-mobile" href="#faq">FAQ</a>
-    <button class="nav-btn" onclick="scrollToDemo()">Try live demo</button>
   </div>
 </nav>
 
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="pill"><span class="dot"></span> Built by Boldbeam · Now in beta</div>
-    <h1>Reply to every lead in <span class="gradient">under 60 seconds.</span><br/>Even while you're showing houses.</h1>
-    <p>LeadPilot texts every new Zillow, Realtor.com, Facebook, and open-house lead the moment they arrive — with a real AI conversation, not a canned autoresponder. You only step in when the lead is actually ready to book.</p>
-    <div class="hero-ctas">
-      <button class="btn btn-primary" onclick="scrollToDemo()">▶ Try the live demo</button>
-      <a class="btn btn-ghost" href="#pricing">See pricing</a>
+<section class="hero" id="top">
+  <div class="container">
+    <div class="eyebrow"><span class="eyebrow-dot"></span> For boutique consulting, advisory, and IT services firms</div>
+    <h1>The CRM your firm actually <em>wanted</em> Salesforce to be.</h1>
+    <p class="hero-sub">We build custom CRMs for professional services firms — purpose-designed around pipeline, engagements, and utilization. Same functionality you use in Salesforce, 40% of the cost, and it actually fits how your firm works.</p>
+    <div class="hero-cta">
+      <a href="#demo" class="btn btn-primary">See the live demo ↓</a>
+      <a href="#contact" class="btn btn-secondary">Book a 20-min audit call</a>
     </div>
-    <div class="hero-meta">
-      <span>✓ 14-day free trial</span>
-      <span>✓ No credit card</span>
-      <span>✓ Set up in 10 minutes</span>
+    <div class="hero-proof">
+      Built for firms running Salesforce Sales Cloud Pro or Enterprise. <strong>Typical client cuts CRM spend $60-100K/year.</strong>
     </div>
   </div>
 </section>
 
-<!-- ============ STATS STRIP ============ -->
-<div class="stats-strip">
-  <div class="strip-stat"><div class="num"><span class="g">21×</span></div><div class="lbl">More likely to convert replying in 5 min vs 30 min (HBR)</div></div>
-  <div class="strip-stat"><div class="num"><span class="g">38s</span></div><div class="lbl">LeadPilot average response time</div></div>
-  <div class="strip-stat"><div class="num"><span class="g">87%</span></div><div class="lbl">Average lead reply rate after LeadPilot</div></div>
-  <div class="strip-stat"><div class="num"><span class="g">3.2×</span></div><div class="lbl">Avg. appointment lift for agents in beta</div></div>
-</div>
-
-<!-- ============ PROBLEM ============ -->
-<section class="section">
-  <div class="section-eyebrow">The leaky bucket</div>
-  <h2 class="section-title">Your leads aren't the problem.<br/>Your response time is.</h2>
-  <p class="section-sub">Real estate agents lose 40–50% of inbound leads because they took too long to text back. By the time you call, your lead has already messaged three other agents.</p>
-  <div class="vs-grid">
-    <div class="vs-card bad">
-      <div class="vs-title">The typical agent</div>
-      <div class="vs-big">2h 12m</div>
-      <div class="vs-desc">Average time to first reply for a Zillow or Realtor.com lead. That's 132 minutes of your lead comparing other agents.</div>
-      <ul class="vs-list">
-        <li>Lead hits inbox while you're at a showing</li>
-        <li>You reply hours later with a generic "Got your message"</li>
-        <li>Lead already contacted 3 other agents</li>
-        <li>44% of leads never get a second follow-up</li>
-        <li>You paid $25–$300 for that lead. Gone.</li>
-      </ul>
+<section class="pain" id="why">
+  <div class="container">
+    <div class="section-head">
+      <h2>Why boutique firms quietly hate their Salesforce instance</h2>
+      <p>You bought Salesforce when you were smaller and it was supposed to scale with you. Now you're paying enterprise prices for an app your team logs into twice a week.</p>
     </div>
-    <div class="vs-card good">
-      <div class="vs-title">Agents on LeadPilot</div>
-      <div class="vs-big">38 seconds</div>
-      <div class="vs-desc">LeadPilot sends a personalized text the moment the lead hits, continues the conversation with AI, and pings you only when it's time to close.</div>
-      <ul class="vs-list">
-        <li>AI replies in under a minute, 24/7</li>
-        <li>Personalized to the property + lead source</li>
-        <li>Handles 3–5 back-and-forths, books showings</li>
-        <li>Runs 14-day follow-up automatically</li>
-        <li>You take over when the lead is hot</li>
-      </ul>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">💸</div>
+        <h3>You're using 15–20% of what you pay for</h3>
+        <p>Sales Cloud Professional runs <span class="stat">$100/user/month</span> minimum. For a 20-person firm, that's $24K/year — before implementation, admin contractors, or the next Dreamforce-induced add-on purchase.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🔧</div>
+        <h3>It was built for a 5,000-seat sales org</h3>
+        <p>Standard objects don't match how you actually work. Engagements. Utilization. Partner staffing. Project budgets. You're duct-taping it with Excel and Notion anyway.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">👻</div>
+        <h3>You pay a ghost admin $50K/year</h3>
+        <p>Nobody on your team wants to own it. So you rent a contract admin, or pay a partner firm, or ignore it and watch your data rot. Either way, another line item.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">📉</div>
+        <h3>Your partners don't use it</h3>
+        <p>Senior partners track their pipeline in their head or a private spreadsheet. The "single source of truth" has nine versions. You know your real forecast from hallway conversations, not the CRM.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🧩</div>
+        <h3>Custom objects = custom pain</h3>
+        <p>Every change costs $300/hour of contractor time. Your "simple request" becomes a three-week ticket. Meanwhile your firm has evolved and the CRM hasn't.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🏃</div>
+        <h3>You can't leave easily</h3>
+        <p>Data is yours but extracting it is painful. Contracts auto-renew. Salesforce knows this — which is why switching feels impossible even when the math is obvious.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ DEMO SECTION ============ -->
-<section id="demo" class="section" style="padding-bottom: 30px;">
-  <div class="section-eyebrow">Live interactive demo</div>
-  <h2 class="section-title">See LeadPilot in action.</h2>
-  <p class="section-sub">Pick a lead source below and watch LeadPilot respond in real time. No signup, no video — this is the actual product experience.</p>
-</section>
-<div class="demo-wrap">
-  <div class="demo-frame">
-    <div class="demo-bar">
-      <div class="browser-dots">
-        <div class="dot-red"></div><div class="dot-yel"></div><div class="dot-grn"></div>
-      </div>
-      <div class="browser-url"><span class="lock">🔒</span> app.boldbeam.io/leadpilot/dashboard</div>
-    </div>
-    <div class="scenario-bar">
-      <div class="scenario-left">
-        <div class="scenario-label">▸ Try a scenario</div>
-        <div class="scenario-title">Simulate a new lead hitting Jordan's inbox</div>
-      </div>
-      <div class="scenario-btns">
-        <button class="scenario-btn" onclick="simulate('zillow')">💎 Zillow lead</button>
-        <button class="scenario-btn" onclick="simulate('open')">🏡 Open house lead</button>
-        <button class="scenario-btn" onclick="simulate('fb')">📱 Facebook ad lead</button>
-        <button class="scenario-btn" onclick="resetDemo()">↻ Reset</button>
-      </div>
+<section class="demo-section" id="demo">
+  <div class="container">
+    <div class="demo-intro">
+      <h2>This is what your CRM could look like in 60 days.</h2>
+      <p>A working demo of Boldbeam, built for a hypothetical 18-person M&A advisory firm called <strong>Meridian Advisors</strong>. Click through the views to see how engagement-based firms actually want their CRM to work.</p>
+      <p class="persona">Fully interactive. Every tab has real data. No login needed.</p>
     </div>
 
-    <!-- App -->
-    <div class="app">
-      <div class="app-nav">
-        <div class="app-brand">
-          <div class="app-logo">L</div>
-          <div class="app-name">LeadPilot</div>
+    <div class="demo-app">
+      <div class="demo-header">
+        <div class="demo-header-left">
+          <div class="traffic-lights"><span></span><span></span><span></span></div>
+          <div class="demo-url">app.meridianadvisors.com — powered by Boldbeam</div>
         </div>
-        <div class="app-agent">
-          <div class="app-avatar">JR</div>
-          <div class="app-agent-meta">
-            <div class="app-agent-name">Jordan Reyes</div>
-            <div class="app-agent-sub">KW · Nashville, TN</div>
-          </div>
+        <div class="demo-user">
+          <span>Sarah Mitchell · Partner</span>
+          <div class="user-avatar">SM</div>
         </div>
       </div>
-      <div class="app-live-banner">
-        <span class="live-dot"></span>
-        <div><b>LeadPilot is live.</b> Monitoring Zillow, Realtor.com, Facebook Lead Ads, and your website.</div>
-      </div>
-      <div class="app-body">
-        <div class="app-stats">
-          <div class="app-stat">
-            <div class="app-stat-lbl">Leads today</div>
-            <div class="app-stat-val" id="statLeads">14</div>
-            <div class="app-stat-sub">+6 vs. yesterday</div>
-          </div>
-          <div class="app-stat">
-            <div class="app-stat-lbl">Avg. response</div>
-            <div class="app-stat-val" id="statResponse">38s</div>
-            <div class="app-stat-sub">Industry avg: 2h 12m</div>
-          </div>
-          <div class="app-stat">
-            <div class="app-stat-lbl">Reply rate (30d)</div>
-            <div class="app-stat-val">87%</div>
-            <div class="app-stat-sub">+12% this month</div>
-          </div>
-          <div class="app-stat">
-            <div class="app-stat-lbl">Leads → Appts</div>
-            <div class="app-stat-val">24%</div>
-            <div class="app-stat-sub amber">Goal: 30%</div>
-          </div>
-        </div>
 
-        <div class="app-grid">
-          <!-- Lead list -->
-          <div class="panel">
-            <div class="panel-h">
+      <div class="demo-body">
+        <aside class="demo-nav">
+          <div class="demo-firm">
+            <div class="firm-avatar">MA</div>
+            <div class="firm-info">
+              <div class="firm-name">Meridian Advisors</div>
+              <div class="firm-role">18 seats · M&A Advisory</div>
+            </div>
+          </div>
+          <div class="nav-section-title">Work</div>
+          <button class="nav-item active" data-view="pipeline"><span class="icon">⚡</span> Pipeline</button>
+          <button class="nav-item" data-view="clients"><span class="icon">🏢</span> Clients</button>
+          <button class="nav-item" data-view="engagements"><span class="icon">📋</span> Engagements</button>
+          <button class="nav-item" data-view="team"><span class="icon">👥</span> Team & Utilization</button>
+          <div class="nav-section-title">Intelligence</div>
+          <button class="nav-item" data-view="ai"><span class="icon">✨</span> AI Inbox <span class="badge">7</span></button>
+          <button class="nav-item" data-view="reports"><span class="icon">📊</span> Reports</button>
+          <div class="nav-section-title">Firm</div>
+          <button class="nav-item" data-view="settings" style="opacity: 0.6;"><span class="icon">⚙️</span> Settings</button>
+        </aside>
+
+        <main class="demo-content" id="demoContent">
+
+          <!-- PIPELINE VIEW -->
+          <div class="view active" id="view-pipeline">
+            <div class="view-header">
               <div>
-                <div class="ttl">Today's leads</div>
-                <div class="sub" id="leadCountLabel">14 leads · 12 responded · 2 hot</div>
+                <div class="view-title">Pipeline</div>
+                <div class="view-sub">Q2 2026 · Updated 14 minutes ago</div>
+              </div>
+              <div class="view-actions">
+                <span class="chip">All partners ▾</span>
+                <span class="chip">All industries ▾</span>
+                <span class="chip primary">+ New opportunity</span>
               </div>
             </div>
-            <div class="lead-list" id="leadList"></div>
-          </div>
 
-          <!-- Conversation -->
-          <div class="panel convo">
-            <div class="convo-header">
-              <div class="convo-lead">
-                <div class="lead-avatar" id="convoAvatar" style="background: linear-gradient(135deg, #f472b6, #c084fc);">ST</div>
-                <div class="convo-lead-info">
-                  <div class="convo-lead-name" id="convoName">Samantha Torres</div>
-                  <div class="convo-lead-meta" id="convoMeta">Open House · 412 Pine Hollow Dr · $485,000</div>
+            <div class="kpi-row">
+              <div class="kpi">
+                <div class="kpi-label">Open Pipeline</div>
+                <div class="kpi-value">$14.2M</div>
+                <div class="kpi-delta up">▲ 18% vs last quarter</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-label">Weighted Pipeline</div>
+                <div class="kpi-value">$6.8M</div>
+                <div class="kpi-delta up">▲ 22%</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-label">Closed YTD</div>
+                <div class="kpi-value">$4.1M</div>
+                <div class="kpi-delta up">▲ 31% vs YTD 2025</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-label">Avg Deal Cycle</div>
+                <div class="kpi-value">97 days</div>
+                <div class="kpi-delta down">▼ 12 days</div>
+              </div>
+            </div>
+
+            <div class="pipeline">
+              <div class="stage">
+                <div class="stage-header">
+                  <div>
+                    <div class="stage-title">Lead</div>
+                    <div class="stage-total">$3.8M · 4 deals</div>
+                  </div>
+                  <span class="stage-count">4</span>
+                </div>
+                <div class="deals">
+                  <div class="deal">
+                    <div class="deal-name">Ardent Industries — Sell-side</div>
+                    <div class="deal-amount">$1.2M</div>
+                    <div class="deal-meta"><div class="deal-owner">JR</div><span class="deal-days">3d</span></div>
+                  </div>
+                  <div class="deal">
+                    <div class="deal-name">Northbrook Foods</div>
+                    <div class="deal-amount">$850K</div>
+                    <div class="deal-meta"><div class="deal-owner">SM</div><span class="deal-days">5d</span></div>
+                  </div>
+                  <div class="deal">
+                    <div class="deal-name">Vanguard Logistics</div>
+                    <div class="deal-amount">$950K</div>
+                    <div class="deal-meta"><div class="deal-owner">DK</div><span class="deal-days">7d</span></div>
+                  </div>
+                  <div class="deal">
+                    <div class="deal-name">Orion Materials</div>
+                    <div class="deal-amount">$800K</div>
+                    <div class="deal-meta"><div class="deal-owner">JR</div><span class="deal-days">9d</span></div>
+                  </div>
                 </div>
               </div>
-              <span class="tag replied" id="convoStatus">AI handling</span>
-            </div>
-            <div class="takeover-banner" id="takeoverBanner" style="display: none;">
-              <div>🔥 <b id="takeoverLead">Samantha</b> is ready to book — take over?</div>
-              <button class="mini-btn" onclick="takeOver()">Take over</button>
-            </div>
-            <div class="convo-messages" id="convoMessages"></div>
-            <div class="convo-footer">
-              <div class="convo-input">
-                <div class="fake-input">LeadPilot is handling this conversation automatically…</div>
-                <button class="btn btn-ghost" style="padding: 7px 12px; font-size: 12px;">Jump in</button>
+
+              <div class="stage">
+                <div class="stage-header">
+                  <div>
+                    <div class="stage-title">Qualified</div>
+                    <div class="stage-total">$3.1M · 3 deals</div>
+                  </div>
+                  <span class="stage-count">3</span>
+                </div>
+                <div class="deals">
+                  <div class="deal">
+                    <div class="deal-name">Pinewood Capital</div>
+                    <div class="deal-amount">$1.4M</div>
+                    <div class="deal-meta"><div class="deal-owner">SM</div><span class="deal-days">18d</span></div>
+                  </div>
+                  <div class="deal">
+                    <div class="deal-name">Harcourt Manufacturing</div>
+                    <div class="deal-amount">$900K</div>
+                    <div class="deal-meta"><div class="deal-owner">DK</div><span class="deal-days stale">34d</span></div>
+                  </div>
+                  <div class="deal">
+                    <div class="deal-name">Merida Chemicals</div>
+                    <div class="deal-amount">$800K</div>
+                    <div class="deal-meta"><div class="deal-owner">JR</div><span class="deal-days">12d</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="stage">
+                <div class="stage-header">
+                  <div>
+                    <div class="stage-title">Proposal</div>
+                    <div class="stage-total">$3.7M · 2 deals</div>
+                  </div>
+                  <span class="stage-count">2</span>
+                </div>
+                <div class="deals">
+                  <div class="deal">
+                    <div class="deal-name">Stoic & Co. — Buy-side</div>
+                    <div class="deal-amount">$2.2M</div>
+                    <div class="deal-meta"><div class="deal-owner">SM</div><span class="deal-days">22d</span></div>
+                  </div>
+                  <div class="deal">
+                    <div class="deal-name">Cascadia Partners</div>
+                    <div class="deal-amount">$1.5M</div>
+                    <div class="deal-meta"><div class="deal-owner">DK</div><span class="deal-days">15d</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="stage">
+                <div class="stage-header">
+                  <div>
+                    <div class="stage-title">Verbal</div>
+                    <div class="stage-total">$2.1M · 1 deal</div>
+                  </div>
+                  <span class="stage-count">1</span>
+                </div>
+                <div class="deals">
+                  <div class="deal">
+                    <div class="deal-name">Leland Holdings</div>
+                    <div class="deal-amount">$2.1M</div>
+                    <div class="deal-meta"><div class="deal-owner">SM</div><span class="deal-days">8d</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="stage">
+                <div class="stage-header">
+                  <div>
+                    <div class="stage-title">Signed</div>
+                    <div class="stage-total">$1.5M · 2 deals</div>
+                  </div>
+                  <span class="stage-count">2</span>
+                </div>
+                <div class="deals">
+                  <div class="deal">
+                    <div class="deal-name">Beacon Senior Living</div>
+                    <div class="deal-amount">$950K</div>
+                    <div class="deal-meta"><div class="deal-owner">JR</div><span class="deal-days">2d</span></div>
+                  </div>
+                  <div class="deal">
+                    <div class="deal-name">Ridgepoint Energy</div>
+                    <div class="deal-amount">$550K</div>
+                    <div class="deal-meta"><div class="deal-owner">DK</div><span class="deal-days">4d</span></div>
+                  </div>
+                </div>
               </div>
             </div>
+
+            <div class="diff-callout">
+              <strong>What Salesforce does badly here:</strong> Salesforce Sales Cloud shows deals but can't connect them to staffed engagements, partner capacity, or retainer vs. success-fee mix. Your partners work around it in spreadsheets. Boldbeam models your real business from day one.
+            </div>
           </div>
-        </div>
+
+          <!-- CLIENTS VIEW -->
+          <div class="view" id="view-clients">
+            <div class="view-header">
+              <div>
+                <div class="view-title">Clients</div>
+                <div class="view-sub">47 active · 132 total relationships</div>
+              </div>
+              <div class="view-actions">
+                <span class="chip">Active ▾</span>
+                <span class="chip">By industry ▾</span>
+                <span class="chip primary">+ New client</span>
+              </div>
+            </div>
+
+            <div class="kpi-row">
+              <div class="kpi">
+                <div class="kpi-label">Active Clients</div>
+                <div class="kpi-value">47</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-label">LTV (top 10)</div>
+                <div class="kpi-value">$38.4M</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-label">Multi-Engagement</div>
+                <div class="kpi-value">23</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-label">At-Risk Relationships</div>
+                <div class="kpi-value">3</div>
+                <div class="kpi-delta down">Needs attention</div>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Client</th>
+                    <th>Status</th>
+                    <th>Active Engagements</th>
+                    <th>LTV</th>
+                    <th>Relationship Owner</th>
+                    <th>Last Contact</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="client-cell">
+                        <div class="client-logo" style="background: #6366F1;">PC</div>
+                        <div>
+                          <div>Pinewood Capital</div>
+                          <div class="client-industry">Private Equity</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="tag green">Active</span></td>
+                    <td>3 · $2.4M</td>
+                    <td>$8.1M</td>
+                    <td>Sarah Mitchell</td>
+                    <td>Yesterday</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="client-cell">
+                        <div class="client-logo" style="background: #10B981;">SA</div>
+                        <div>
+                          <div>Stoic & Co.</div>
+                          <div class="client-industry">Family Office</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="tag green">Active</span></td>
+                    <td>2 · $3.8M</td>
+                    <td>$6.2M</td>
+                    <td>Sarah Mitchell</td>
+                    <td>3 days ago</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="client-cell">
+                        <div class="client-logo" style="background: #F59E0B;">AI</div>
+                        <div>
+                          <div>Ardent Industries</div>
+                          <div class="client-industry">Industrial Manufacturing</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="tag blue">Prospect</span></td>
+                    <td>1 · $1.2M</td>
+                    <td>$1.2M</td>
+                    <td>Jack Reyes</td>
+                    <td>This morning</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="client-cell">
+                        <div class="client-logo" style="background: #EF4444;">HM</div>
+                        <div>
+                          <div>Harcourt Manufacturing</div>
+                          <div class="client-industry">Industrial Manufacturing</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="tag amber">At Risk</span></td>
+                    <td>1 · $900K</td>
+                    <td>$2.8M</td>
+                    <td>Dan Kowalski</td>
+                    <td>18 days ago</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="client-cell">
+                        <div class="client-logo" style="background: #A855F7;">LH</div>
+                        <div>
+                          <div>Leland Holdings</div>
+                          <div class="client-industry">Diversified Holdings</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="tag green">Active</span></td>
+                    <td>1 · $2.1M</td>
+                    <td>$5.4M</td>
+                    <td>Sarah Mitchell</td>
+                    <td>Today</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="client-cell">
+                        <div class="client-logo" style="background: #EC4899;">BS</div>
+                        <div>
+                          <div>Beacon Senior Living</div>
+                          <div class="client-industry">Healthcare Services</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="tag green">Active</span></td>
+                    <td>1 · $950K</td>
+                    <td>$3.7M</td>
+                    <td>Jack Reyes</td>
+                    <td>2 days ago</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="client-cell">
+                        <div class="client-logo" style="background: #14B8A6;">CP</div>
+                        <div>
+                          <div>Cascadia Partners</div>
+                          <div class="client-industry">Real Estate</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="tag blue">Prospect</span></td>
+                    <td>1 · $1.5M</td>
+                    <td>$1.5M</td>
+                    <td>Dan Kowalski</td>
+                    <td>5 days ago</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="client-cell">
+                        <div class="client-logo" style="background: #3B82F6;">RE</div>
+                        <div>
+                          <div>Ridgepoint Energy</div>
+                          <div class="client-industry">Oil & Gas Services</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="tag green">Active</span></td>
+                    <td>1 · $550K</td>
+                    <td>$2.1M</td>
+                    <td>Dan Kowalski</td>
+                    <td>1 day ago</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="diff-callout">
+              <strong>Salesforce pain point:</strong> Account hierarchy is a dropdown in Salesforce. For a firm like Meridian, a "client" is a web of related entities, past engagements, LP/investor relationships, and partner coverage. Boldbeam models the actual relationship graph — and surfaces at-risk accounts before they churn.
+            </div>
+          </div>
+
+          <!-- ENGAGEMENTS VIEW -->
+          <div class="view" id="view-engagements">
+            <div class="view-header">
+              <div>
+                <div class="view-title">Active Engagements</div>
+                <div class="view-sub">6 engagements in flight · $9.2M contracted value</div>
+              </div>
+              <div class="view-actions">
+                <span class="chip">All partners ▾</span>
+                <span class="chip">Active ▾</span>
+                <span class="chip primary">+ New engagement</span>
+              </div>
+            </div>
+
+            <div class="engagement-grid">
+              <div class="engagement">
+                <div class="eng-head">
+                  <div>
+                    <div class="eng-title">Sell-side M&A — Project Cornerstone</div>
+                    <div class="eng-client">Pinewood Capital · Portfolio Exit</div>
+                  </div>
+                  <span class="eng-status active">On Track</span>
+                </div>
+                <div class="eng-meta">
+                  <div class="eng-meta-item">
+                    <div class="eng-meta-label">Contract Value</div>
+                    <div class="eng-meta-value">$1.8M</div>
+                  </div>
+                  <div class="eng-meta-item">
+                    <div class="eng-meta-label">Close Target</div>
+                    <div class="eng-meta-value">Sep 2026</div>
+                  </div>
+                </div>
+                <div class="progress-track"><div class="progress-fill" style="width: 62%;"></div></div>
+                <div class="progress-label"><span>62% complete</span><span>Budget: $620K / $1M used</span></div>
+                <div class="eng-team">
+                  <div class="team-avatars">
+                    <div class="team-avatar" style="background: #6366F1;">SM</div>
+                    <div class="team-avatar" style="background: #10B981;">JR</div>
+                    <div class="team-avatar" style="background: #F59E0B;">TH</div>
+                    <div class="team-avatar" style="background: #A855F7;">LM</div>
+                  </div>
+                  <div class="eng-next">Next: CIM review · Thursday</div>
+                </div>
+              </div>
+
+              <div class="engagement">
+                <div class="eng-head">
+                  <div>
+                    <div class="eng-title">Buy-side Advisory — Project Atlas</div>
+                    <div class="eng-client">Stoic & Co. · Platform Acquisition</div>
+                  </div>
+                  <span class="eng-status active">On Track</span>
+                </div>
+                <div class="eng-meta">
+                  <div class="eng-meta-item">
+                    <div class="eng-meta-label">Retainer + Success</div>
+                    <div class="eng-meta-value">$2.2M</div>
+                  </div>
+                  <div class="eng-meta-item">
+                    <div class="eng-meta-label">LOI Target</div>
+                    <div class="eng-meta-value">Jun 2026</div>
+                  </div>
+                </div>
+                <div class="progress-track"><div class="progress-fill" style="width: 41%;"></div></div>
+                <div class="progress-label"><span>41% complete</span><span>3 targets shortlisted</span></div>
+                <div class="eng-team">
+                  <div class="team-avatars">
+                    <div class="team-avatar" style="background: #6366F1;">SM</div>
+                    <div class="team-avatar" style="background: #10B981;">JR</div>
+                    <div class="team-avatar" style="background: #EC4899;">KV</div>
+                  </div>
+                  <div class="eng-next">Next: Management meeting · Monday</div>
+                </div>
+              </div>
+
+              <div class="engagement">
+                <div class="eng-head">
+                  <div>
+                    <div class="eng-title">Recap & Capital Raise</div>
+                    <div class="eng-client">Leland Holdings · Growth Equity</div>
+                  </div>
+                  <span class="eng-status closing">Closing</span>
+                </div>
+                <div class="eng-meta">
+                  <div class="eng-meta-item">
+                    <div class="eng-meta-label">Deal Size</div>
+                    <div class="eng-meta-value">$2.1M fee</div>
+                  </div>
+                  <div class="eng-meta-item">
+                    <div class="eng-meta-label">Signing</div>
+                    <div class="eng-meta-value">May 8</div>
+                  </div>
+                </div>
+                <div class="progress-track"><div class="progress-fill" style="width: 93%;"></div></div>
+                <div class="progress-label"><span>93% complete</span><span>Docs in final review</span></div>
+                <div class="eng-team">
+                  <div class="team-avatars">
+                    <div class="team-avatar" style="background: #6366F1;">SM</div>
+                    <div class="team-avatar" style="background: #A855F7;">LM</div>
+                  </div>
+                  <div class="eng-next">Next: Signing call · Friday 3pm</div>
+                </div>
+              </div>
+
+              <div class="engagement">
+                <div class="eng-head">
+                  <div>
+                    <div class="eng-title">Strategic Review</div>
+                    <div class="eng-client">Harcourt Manufacturing</div>
+                  </div>
+                  <span class="eng-status risk">At Risk</span>
+                </div>
+                <div class="eng-meta">
+                  <div class="eng-meta-item">
+                    <div class="eng-meta-label">Fixed Fee</div>
+                    <div class="eng-meta-value">$900K</div>
+                  </div>
+                  <div class="eng-meta-item">
+                    <div class="eng-meta-label">Deadline</div>
+                    <div class="eng-meta-value">Slipping</div>
+                  </div>
+                </div>
+                <div class="progress-track"><div class="progress-fill warn" style="width: 78%;"></div></div>
+                <div class="progress-label"><span>Budget 78% used</span><span style="color: var(--warn);">Scope creep — DK flagged</span></div>
+                <div class="eng-team">
+                  <div class="team-avatars">
+                    <div class="team-avatar" style="background: #EF4444;">DK</div>
+                    <div class="team-avatar" style="background: #F59E0B;">TH</div>
+                  </div>
+                  <div class="eng-next">Next: Client scope call · ASAP</div>
+                </div>
+              </div>
+
+              <div class="engagement">
+                <div class="eng-head">
+                  <div>
+                    <div class="eng-title">Sell-side Advisory</div>
+                    <div class="eng-client">Beacon Senior Living</div>
+                  </div>
+                  <span class="eng-status active">On Track</span>
+                </div>
+                <div class="eng-meta">
+                  <div class="eng-meta-item">
+                    <div class="eng-meta-label">Contract Value</div>
+                    <div class="eng-meta-value">$950K</div>
+                  </div>
+                  <div class="eng-meta-item">
+                    <div class="eng-meta-label">Close Target</div>
+                    <div class="eng-meta-value">Oct 2026</div>
+                  </div>
+                </div>
+                <div class="progress-track"><div class="progress-fill" style="width: 18%;"></div></div>
+                <div class="progress-label"><span>18% complete · Just kicked off</span><span>Discovery phase</span></div>
+                <div class="eng-team">
+                  <div class="team-avatars">
+                    <div class="team-avatar" style="background: #10B981;">JR</div>
+                    <div class="team-avatar" style="background: #EC4899;">KV</div>
+                  </div>
+                  <div class="eng-next">Next: Data room setup · Tuesday</div>
+                </div>
+              </div>
+
+              <div class="engagement">
+                <div class="eng-head">
+                  <div>
+                    <div class="eng-title">Refinancing Advisory</div>
+                    <div class="eng-client">Ridgepoint Energy</div>
+                  </div>
+                  <span class="eng-status active">On Track</span>
+                </div>
+                <div class="eng-meta">
+                  <div class="eng-meta-item">
+                    <div class="eng-meta-label">Fee + Success</div>
+                    <div class="eng-meta-value">$550K</div>
+                  </div>
+                  <div class="eng-meta-item">
+                    <div class="eng-meta-label">Target Close</div>
+                    <div class="eng-meta-value">Jul 2026</div>
+                  </div>
+                </div>
+                <div class="progress-track"><div class="progress-fill" style="width: 55%;"></div></div>
+                <div class="progress-label"><span>55% complete</span><span>Term sheets out</span></div>
+                <div class="eng-team">
+                  <div class="team-avatars">
+                    <div class="team-avatar" style="background: #EF4444;">DK</div>
+                    <div class="team-avatar" style="background: #A855F7;">LM</div>
+                  </div>
+                  <div class="eng-next">Next: Lender responses · Wed</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="diff-callout">
+              <strong>Salesforce has no concept of an engagement.</strong> It has opportunities (which close) and cases (which are for support). For a firm that sells projects, Salesforce requires a custom object, a flow, and $15K of Pardot-adjacent config to replicate what Boldbeam gives you day one — with budget burn, scope risk, and staffing baked in.
+            </div>
+          </div>
+
+          <!-- TEAM & UTILIZATION VIEW -->
+          <div class="view" id="view-team">
+            <div class="view-header">
+              <div>
+                <div class="view-title">Team & Utilization</div>
+                <div class="view-sub">18 people · Average utilization 73% · 4 under-staffed next month</div>
+              </div>
+              <div class="view-actions">
+                <span class="chip">This week ▾</span>
+                <span class="chip">All levels ▾</span>
+                <span class="chip primary">Staffing plan</span>
+              </div>
+            </div>
+
+            <div class="kpi-row">
+              <div class="kpi">
+                <div class="kpi-label">Firm-wide Utilization</div>
+                <div class="kpi-value">73%</div>
+                <div class="kpi-delta up">Target: 68%</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-label">Billable Hours (MTD)</div>
+                <div class="kpi-value">2,184</div>
+                <div class="kpi-delta up">▲ 9%</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-label">Avg Bill Rate</div>
+                <div class="kpi-value">$487</div>
+                <div class="kpi-delta up">▲ $12</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-label">Bench Risk (6 wks)</div>
+                <div class="kpi-value">2.5 FTE</div>
+                <div class="kpi-delta down">Watch: KV, TH</div>
+              </div>
+            </div>
+
+            <div class="util-grid">
+              <div class="util-row">
+                <div class="util-person">
+                  <div class="util-avatar" style="background: #6366F1;">SM</div>
+                  <div><div class="util-name">Sarah Mitchell</div><div class="util-title">Managing Partner</div></div>
+                </div>
+                <div class="util-pct warn">94%</div>
+                <div class="util-bar">
+                  <div class="util-chunk c1" style="width: 40%;">Cornerstone</div>
+                  <div class="util-chunk c2" style="width: 32%;">Atlas</div>
+                  <div class="util-chunk c3" style="width: 22%;">Leland</div>
+                  <div class="util-bench" style="width: 6%;"></div>
+                </div>
+                <div class="util-capacity">6% open</div>
+              </div>
+
+              <div class="util-row">
+                <div class="util-person">
+                  <div class="util-avatar" style="background: #EF4444;">DK</div>
+                  <div><div class="util-name">Dan Kowalski</div><div class="util-title">Partner</div></div>
+                </div>
+                <div class="util-pct good">81%</div>
+                <div class="util-bar">
+                  <div class="util-chunk c4" style="width: 55%;">Harcourt</div>
+                  <div class="util-chunk c3" style="width: 26%;">Ridgepoint</div>
+                  <div class="util-bench" style="width: 19%;">Bench</div>
+                </div>
+                <div class="util-capacity">19% open</div>
+              </div>
+
+              <div class="util-row">
+                <div class="util-person">
+                  <div class="util-avatar" style="background: #10B981;">JR</div>
+                  <div><div class="util-name">Jack Reyes</div><div class="util-title">Partner</div></div>
+                </div>
+                <div class="util-pct warn">96%</div>
+                <div class="util-bar">
+                  <div class="util-chunk c1" style="width: 48%;">Cornerstone</div>
+                  <div class="util-chunk c2" style="width: 30%;">Atlas</div>
+                  <div class="util-chunk c3" style="width: 18%;">Beacon</div>
+                  <div class="util-bench" style="width: 4%;"></div>
+                </div>
+                <div class="util-capacity">4% open</div>
+              </div>
+
+              <div class="util-row">
+                <div class="util-person">
+                  <div class="util-avatar" style="background: #A855F7;">LM</div>
+                  <div><div class="util-name">Lena Morris</div><div class="util-title">VP</div></div>
+                </div>
+                <div class="util-pct good">78%</div>
+                <div class="util-bar">
+                  <div class="util-chunk c1" style="width: 38%;">Cornerstone</div>
+                  <div class="util-chunk c3" style="width: 22%;">Leland</div>
+                  <div class="util-chunk c4" style="width: 18%;">Ridgepoint</div>
+                  <div class="util-bench" style="width: 22%;">Bench</div>
+                </div>
+                <div class="util-capacity">22% open</div>
+              </div>
+
+              <div class="util-row">
+                <div class="util-person">
+                  <div class="util-avatar" style="background: #F59E0B;">TH</div>
+                  <div><div class="util-name">Tom Harper</div><div class="util-title">Associate</div></div>
+                </div>
+                <div class="util-pct mid">54%</div>
+                <div class="util-bar">
+                  <div class="util-chunk c1" style="width: 34%;">Cornerstone</div>
+                  <div class="util-chunk c4" style="width: 20%;">Harcourt</div>
+                  <div class="util-bench" style="width: 46%;">Bench</div>
+                </div>
+                <div class="util-capacity">46% open</div>
+              </div>
+
+              <div class="util-row">
+                <div class="util-person">
+                  <div class="util-avatar" style="background: #EC4899;">KV</div>
+                  <div><div class="util-name">Kira Vance</div><div class="util-title">Associate</div></div>
+                </div>
+                <div class="util-pct mid">47%</div>
+                <div class="util-bar">
+                  <div class="util-chunk c2" style="width: 28%;">Atlas</div>
+                  <div class="util-chunk c3" style="width: 19%;">Beacon</div>
+                  <div class="util-bench" style="width: 53%;">Bench</div>
+                </div>
+                <div class="util-capacity">53% open</div>
+              </div>
+
+              <div class="util-row">
+                <div class="util-person">
+                  <div class="util-avatar" style="background: #14B8A6;">AB</div>
+                  <div><div class="util-name">Aisha Bright</div><div class="util-title">Analyst</div></div>
+                </div>
+                <div class="util-pct good">82%</div>
+                <div class="util-bar">
+                  <div class="util-chunk c1" style="width: 45%;">Cornerstone</div>
+                  <div class="util-chunk c2" style="width: 25%;">Atlas</div>
+                  <div class="util-chunk c4" style="width: 12%;">Harcourt</div>
+                  <div class="util-bench" style="width: 18%;">Bench</div>
+                </div>
+                <div class="util-capacity">18% open</div>
+              </div>
+            </div>
+
+            <div class="diff-callout">
+              <strong>Utilization doesn't exist in Salesforce Sales Cloud.</strong> You track it in a spreadsheet that one ops person updates weekly. When you want to staff a new engagement, you ping partners on Slack and hope. Boldbeam shows real-time capacity next to pipeline — so when a partner is about to sign, you already know who can staff it.
+            </div>
+          </div>
+
+          <!-- AI INBOX VIEW -->
+          <div class="view" id="view-ai">
+            <div class="view-header">
+              <div>
+                <div class="view-title">AI Inbox</div>
+                <div class="view-sub">7 pending updates · Last scan: 4 minutes ago</div>
+              </div>
+              <div class="view-actions">
+                <span class="chip">All sources ▾</span>
+                <span class="chip">High confidence ▾</span>
+                <span class="chip primary">Scan now</span>
+              </div>
+            </div>
+
+            <div class="ai-banner">
+              <div class="ai-icon">✨</div>
+              <div class="ai-banner-text">
+                <div class="ai-banner-title">Boldbeam AI is reading your firm's inbox and calendars</div>
+                <div class="ai-banner-sub">Gmail · Outlook · Google Calendar · Zoom · Accept any suggestion to update the CRM automatically. Nothing is written without your approval.</div>
+              </div>
+            </div>
+
+            <div class="ai-item">
+              <div class="ai-item-head">
+                <div class="ai-item-title">📧 Update opportunity: Pinewood Capital</div>
+                <div class="ai-item-time">22 minutes ago</div>
+              </div>
+              <div class="ai-item-body">
+                In an email from Mike Chen (Pinewood Capital), he mentioned they're now open to expanding the mandate to include <em>two additional portfolio companies</em>. Current opp is sized at $1.4M — suggesting you update to <em>$2.1M (range)</em> and change probability from 40% → 60%.
+              </div>
+              <div class="ai-actions">
+                <button class="ai-btn primary">✓ Apply update</button>
+                <button class="ai-btn secondary">Dismiss</button>
+                <button class="ai-btn secondary">View email</button>
+              </div>
+            </div>
+
+            <div class="ai-item">
+              <div class="ai-item-head">
+                <div class="ai-item-title">📅 Log meeting: Stoic & Co.</div>
+                <div class="ai-item-time">1 hour ago</div>
+              </div>
+              <div class="ai-item-body">
+                Sarah's 90-min call with Stoic & Co. (David Park) on Tuesday wasn't logged. AI summary: <em>discussed three shortlisted targets, Park wants to move faster on Target #2 (Ardent Materials), agreed to revise LOI by Monday</em>. Suggest: add as activity on Project Atlas + create follow-up task.
+              </div>
+              <div class="ai-actions">
+                <button class="ai-btn primary">✓ Log activity</button>
+                <button class="ai-btn secondary">Edit summary</button>
+                <button class="ai-btn secondary">Dismiss</button>
+              </div>
+            </div>
+
+            <div class="ai-item">
+              <div class="ai-item-head">
+                <div class="ai-item-title">⚠️ Relationship risk: Harcourt Manufacturing</div>
+                <div class="ai-item-time">3 hours ago</div>
+              </div>
+              <div class="ai-item-body">
+                No contact logged with Harcourt Manufacturing in <em>18 days</em>. Their engagement is at 78% budget used with scope concerns. Last email from their CFO (Lisa Brennan) included the phrase <em>"starting to wonder about timing"</em>. Recommend: Dan to book a call this week.
+              </div>
+              <div class="ai-actions">
+                <button class="ai-btn primary">Book call for Dan</button>
+                <button class="ai-btn secondary">Draft email</button>
+                <button class="ai-btn secondary">Dismiss</button>
+              </div>
+            </div>
+
+            <div class="ai-item">
+              <div class="ai-item-head">
+                <div class="ai-item-title">🎯 New lead detected: Vanguard Logistics</div>
+                <div class="ai-item-time">5 hours ago</div>
+              </div>
+              <div class="ai-item-body">
+                Inbound referral email from Brian Hofferman (your contact at Cascadia) introducing Greg Yablonski, CEO of Vanguard Logistics. Company is exploring <em>sell-side M&A, $90M–$110M revenue</em>, PE-owned. Suggest: create opportunity, assign to Dan (industry match), value $950K–$1.2M.
+              </div>
+              <div class="ai-actions">
+                <button class="ai-btn primary">✓ Create opportunity</button>
+                <button class="ai-btn secondary">Modify</button>
+                <button class="ai-btn secondary">Dismiss</button>
+              </div>
+            </div>
+
+            <div class="ai-item">
+              <div class="ai-item-head">
+                <div class="ai-item-title">💡 Pattern detected: Industrial manufacturing</div>
+                <div class="ai-item-time">Yesterday</div>
+              </div>
+              <div class="ai-item-body">
+                Three of your last four sell-side engagements came from industrial manufacturing referrers. <em>63% of your closed YTD revenue</em> is in this vertical. Your active pipeline in industrial manufacturing is only $1.7M. Recommend: intentional BD push in this vertical this quarter.
+              </div>
+              <div class="ai-actions">
+                <button class="ai-btn primary">Schedule BD review</button>
+                <button class="ai-btn secondary">Export data</button>
+                <button class="ai-btn secondary">Dismiss</button>
+              </div>
+            </div>
+
+            <div class="diff-callout">
+              <strong>This is the feature that sells the whole product.</strong> Salesforce Einstein costs $50/user/month extra, needs 6 months of data, and still can't do this. Boldbeam AI works day one because it reads your actual inbox — not a reduced CRM dataset.
+            </div>
+          </div>
+
+          <!-- REPORTS VIEW -->
+          <div class="view" id="view-reports">
+            <div class="view-header">
+              <div>
+                <div class="view-title">Reports</div>
+                <div class="view-sub">Custom dashboards built for Meridian's partner meeting</div>
+              </div>
+              <div class="view-actions">
+                <span class="chip">Partner meeting (Mondays) ▾</span>
+                <span class="chip primary">+ New report</span>
+              </div>
+            </div>
+
+            <div class="kpi-row">
+              <div class="kpi">
+                <div class="kpi-label">Q2 Forecast (high)</div>
+                <div class="kpi-value">$8.4M</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-label">Q2 Forecast (commit)</div>
+                <div class="kpi-value">$5.2M</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-label">Fee Realization</div>
+                <div class="kpi-value">91%</div>
+                <div class="kpi-delta up">▲ 3pts</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-label">Win Rate (12mo)</div>
+                <div class="kpi-value">38%</div>
+                <div class="kpi-delta up">▲ 6pts</div>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Report</th>
+                    <th>Type</th>
+                    <th>Audience</th>
+                    <th>Last Run</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Weekly Pipeline Review</strong></td>
+                    <td>Live Dashboard</td>
+                    <td>All partners</td>
+                    <td>Today, 8:00 AM</td>
+                    <td><span class="tag green">Auto</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Partner Origination Scorecard</strong></td>
+                    <td>Monthly</td>
+                    <td>Managing partner</td>
+                    <td>April 1, 2026</td>
+                    <td><span class="tag green">Auto</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Engagement Profitability</strong></td>
+                    <td>Per-engagement</td>
+                    <td>CFO, PMs</td>
+                    <td>This morning</td>
+                    <td><span class="tag green">Auto</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Client LTV & At-Risk</strong></td>
+                    <td>Monthly</td>
+                    <td>Partners</td>
+                    <td>April 1, 2026</td>
+                    <td><span class="tag amber">Scheduled</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>BD Pipeline by Vertical</strong></td>
+                    <td>Weekly</td>
+                    <td>BD committee</td>
+                    <td>Yesterday</td>
+                    <td><span class="tag green">Auto</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Fee Realization Trend</strong></td>
+                    <td>Quarterly</td>
+                    <td>Board</td>
+                    <td>April 2, 2026</td>
+                    <td><span class="tag blue">Quarterly</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="diff-callout">
+              <strong>Salesforce reports are the #1 reason firms hire consultants.</strong> Drag-and-drop report builder, 2 hours to build one report, breaks when objects change. Boldbeam reports are built into the product by us — tuned to your firm's partner meeting cadence — and we modify them as your firm evolves. Included in retainer.
+            </div>
+          </div>
+
+          <!-- SETTINGS PLACEHOLDER -->
+          <div class="view" id="view-settings">
+            <div class="view-header">
+              <div>
+                <div class="view-title">Settings</div>
+                <div class="view-sub">Firm configuration · users · integrations</div>
+              </div>
+            </div>
+            <div style="padding: 40px; text-align: center; color: var(--text-muted);">
+              <div style="font-size: 48px; margin-bottom: 16px;">⚙️</div>
+              <p>This view is configured per-firm during Boldbeam implementation.</p>
+              <p style="font-size: 13px; margin-top: 8px;">Every tenant gets: user management, role-based access, integrations (Gmail, Outlook, Zoom, QuickBooks, DocuSign), and data export.</p>
+            </div>
+          </div>
+
+        </main>
       </div>
     </div>
-  </div>
-  <div style="text-align: center; margin-top: 18px; color: var(--muted); font-size: 13px;">
-    💡 <b style="color: var(--brand-3);">Pro tip:</b> Click "Zillow lead", watch the text send, then click "Simulate lead reply" to play the full conversation through to a booked showing.
-  </div>
-</div>
 
-<!-- ============ HOW IT WORKS ============ -->
-<section id="how" class="section">
-  <div class="section-eyebrow">How it works</div>
-  <h2 class="section-title">Set it up in 10 minutes.<br/>Never lose a lead again.</h2>
-  <div class="steps">
-    <div class="step-card">
-      <div class="step-num">1</div>
-      <h3>Connect your lead sources</h3>
-      <p>Plug LeadPilot into everywhere your leads come from. One-click integrations, no dev work.</p>
-      <ul>
-        <li>Zillow Premier Agent email forwarding</li>
-        <li>Realtor.com auto-forwarding</li>
-        <li>Facebook Lead Ads</li>
-        <li>Open house QR sign-in</li>
-        <li>Website form embed</li>
-      </ul>
+    <p style="text-align: center; margin-top: 32px; color: var(--text-muted); font-size: 14px;">👆 Try clicking through the left nav. Every tab is a real, custom-tuned view for a professional services firm.</p>
+  </div>
+</section>
+
+<section class="offer" id="offer">
+  <div class="container">
+    <div class="section-head">
+      <h2>How we work together</h2>
+      <p>Three engagement tiers. Start small with an audit to see if it's worth replacing at all. Scale from there.</p>
     </div>
-    <div class="step-card">
-      <div class="step-num">2</div>
-      <h3>Train your AI</h3>
-      <p>Tell LeadPilot about you in 5 minutes. It picks up your voice, listings, and market knowledge.</p>
-      <ul>
-        <li>Upload your voice samples + current listings</li>
-        <li>Set your brokerage, calendar, and compliance rules</li>
-        <li>Define when to escalate to you</li>
-        <li>Approve the first 5 drafts, then let it fly</li>
-      </ul>
+
+    <div class="offer-grid">
+      <div class="offer-card">
+        <div class="offer-name">Salesforce Audit</div>
+        <div class="offer-desc">Two-week diagnostic. Do you actually need to replace it?</div>
+        <div class="offer-price">$3,500 <small>flat</small></div>
+        <div class="offer-sub">Delivered in 10 business days</div>
+        <ul class="offer-list">
+          <li>Line-by-line Salesforce cost breakdown (incl. hidden costs)</li>
+          <li>Usage analysis: what's actually used vs. paid for</li>
+          <li>Replacement architecture + cost model</li>
+          <li>ROI projection (year 1 and year 3)</li>
+          <li>60-min partner readout call</li>
+        </ul>
+        <a href="#contact" class="btn btn-secondary">Start an audit</a>
+      </div>
+
+      <div class="offer-card featured">
+        <div class="offer-name">Full Build & Cutover</div>
+        <div class="offer-desc">We build your custom CRM and migrate you off Salesforce.</div>
+        <div class="offer-price">$45,000 <small>+ retainer</small></div>
+        <div class="offer-sub">60-day build · Fixed price · No overruns</div>
+        <ul class="offer-list">
+          <li>Custom CRM tuned to your firm's process</li>
+          <li>Pipeline, clients, engagements, utilization, AI inbox</li>
+          <li>Full data migration from Salesforce</li>
+          <li>Team training + admin documentation</li>
+          <li>Parallel run for 30 days before cutover</li>
+          <li>Includes first 3 months of retainer</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary">Book discovery call</a>
+      </div>
+
+      <div class="offer-card">
+        <div class="offer-name">Managed Retainer</div>
+        <div class="offer-desc">We run and evolve your CRM. You never touch it.</div>
+        <div class="offer-price">$2,500 <small>/ month</small></div>
+        <div class="offer-sub">Starts month 4 after build</div>
+        <ul class="offer-list">
+          <li>Hosting + all platform subscriptions included</li>
+          <li>Enhancements & new reports on request</li>
+          <li>User support for your team</li>
+          <li>Quarterly strategy review</li>
+          <li>Cancel anytime — your data is always yours</li>
+        </ul>
+        <a href="#contact" class="btn btn-secondary">Talk to us</a>
+      </div>
     </div>
-    <div class="step-card">
-      <div class="step-num">3</div>
-      <h3>LeadPilot takes over</h3>
-      <p>AI responds in under 60 seconds, books showings, runs 14-day follow-up, and pings you only for hot leads.</p>
-      <ul>
-        <li>24/7 SMS + email coverage</li>
-        <li>Auto-books showings via your calendar</li>
-        <li>Syncs to Follow Up Boss + kvCORE</li>
-        <li>You focus on closings, not typing</li>
-      </ul>
+
+    <div style="text-align: center; margin-top: 40px; padding: 24px; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border); max-width: 700px; margin-left: auto; margin-right: auto;">
+      <div style="font-size: 14px; color: var(--text-muted); margin-bottom: 8px;">YOUR MATH</div>
+      <div style="font-size: 20px; color: var(--text-primary); font-family: 'Fraunces', serif; line-height: 1.5;">
+        Current Salesforce all-in cost: <span style="color: var(--warn);">$80-120K/year</span><br>
+        Boldbeam all-in (year 2+): <span style="color: var(--success);">$30K/year</span><br>
+        <strong style="color: var(--accent);">Payback on build: 8-14 months. Ten-year savings: $500K+.</strong>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ SOCIAL PROOF ============ -->
-<section class="section" style="padding-top: 30px;">
-  <div class="section-eyebrow">What agents are saying</div>
-  <h2 class="section-title">Early results from the beta.</h2>
-  <p class="section-sub">We launched LeadPilot with 12 agents in April 2026. Here's what happened in their first 30 days.</p>
-  <div class="quotes">
-    <div class="quote-card">
-      <div class="stars">★★★★★</div>
-      <p class="quote">"I was spending $1,400/month on Zillow leads and losing half of them to slow response. LeadPilot booked me 11 showings in week one. It's the first tool I've actually kept past the trial."</p>
-      <div class="quote-person">
-        <div class="quote-avatar" style="background: linear-gradient(135deg, #60a5fa, #c084fc);">MG</div>
-        <div><div class="quote-name">Maya Gonzalez</div><div class="quote-role">KW · Phoenix, AZ</div></div>
-      </div>
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-head">
+      <h2>Questions firms always ask</h2>
+      <p>The honest answers, not sales-pitch answers.</p>
     </div>
-    <div class="quote-card">
-      <div class="stars">★★★★★</div>
-      <p class="quote">"I did an open house Saturday and had 14 sign-ins. By Sunday morning LeadPilot had already booked 3 private showings for me. Used to take me a week of manual follow-up to get that."</p>
-      <div class="quote-person">
-        <div class="quote-avatar" style="background: linear-gradient(135deg, #34d399, #60a5fa);">DT</div>
-        <div><div class="quote-name">Derek Tanner</div><div class="quote-role">Compass · Austin, TX</div></div>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">What if we need something Boldbeam doesn't do?<span class="faq-toggle">+</span></button>
+        <div class="faq-a">That's the point of custom-built. Your retainer includes a change-order queue. New reports, new objects, new workflows — we add them as your firm evolves. Most requests ship in 1–2 weeks.</div>
       </div>
-    </div>
-    <div class="quote-card">
-      <div class="stars">★★★★★</div>
-      <p class="quote">"The first AI tool that doesn't sound like an AI tool. My leads replied back thinking they were texting a real assistant. Closed 2 deals in 6 weeks from leads I would've let die in my inbox."</p>
-      <div class="quote-person">
-        <div class="quote-avatar" style="background: linear-gradient(135deg, #fb923c, #f472b6);">AS</div>
-        <div><div class="quote-name">Aisha Sharma</div><div class="quote-role">eXp · Nashville, TN</div></div>
+      <div class="faq-item">
+        <button class="faq-q">What if you disappear?<span class="faq-toggle">+</span></button>
+        <div class="faq-a">We build on open platforms (Supabase/Postgres, Retool, Make.com) on purpose. You own your data and your tenant. If we vanish, any CRM developer can pick it up — no proprietary lock-in. We also include a documented runbook so your team can hire a maintainer in any emergency.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is our data safe during migration?<span class="faq-toggle">+</span></button>
+        <div class="faq-a">We run a 30-day parallel period where your team uses Boldbeam while Salesforce stays live. No one switches over until the data reconciles and partners sign off. Your Salesforce instance stays intact as a read-only archive for 12 months.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Who does the build — just you?<span class="faq-toggle">+</span></button>
+        <div class="faq-a">Lead architect (ex-Salesforce enterprise) + a senior engineer per engagement. For complex migrations we bring in a specialized data-migration partner. You'll meet the whole team before signing.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if we decide to stay on Salesforce?<span class="faq-toggle">+</span></button>
+        <div class="faq-a">Great. The $3,500 audit still pays for itself — most firms save $15–40K/year just by right-sizing their Salesforce licenses and cancelling unused products. We'll hand you a Salesforce optimization plan and wish you well.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can you integrate with our existing tools?<span class="faq-toggle">+</span></button>
+        <div class="faq-a">Yes. Native integrations with Gmail, Outlook, Google Calendar, Zoom, DocuSign, QuickBooks, Xero, Slack, and most data warehouses. Custom integrations (e.g., PitchBook, Dealogic, proprietary tools) are scoped during discovery.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What's the actual timeline?<span class="faq-toggle">+</span></button>
+        <div class="faq-a">Week 1–2: Discovery & process mapping. Week 3–6: Build. Week 7–10: Data migration + parallel run. Week 11: Cutover. Week 12: Training + handoff. Total: 60–75 days from kickoff to Salesforce cancellation.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do you take payment over time?<span class="faq-toggle">+</span></button>
+        <div class="faq-a">Standard terms: 50% on kickoff, 50% on go-live. We can split into thirds (kickoff / midpoint / go-live) for an additional 5%. Retainer is monthly, cancel anytime.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ PRICING ============ -->
-<section id="pricing" class="section">
-  <div class="section-eyebrow">Simple pricing</div>
-  <h2 class="section-title">One deal pays for a year.</h2>
-  <p class="section-sub">14-day free trial. No credit card. Cancel anytime. If LeadPilot doesn't book you an appointment in 30 days, we'll refund you.</p>
-  <div class="pricing">
-    <div class="plan">
-      <div class="plan-name">Starter</div>
-      <div class="plan-price">$29<span>/mo</span></div>
-      <div class="plan-desc">For brand-new agents testing the waters.</div>
-      <ul>
-        <li>100 leads/month</li>
-        <li>AI SMS + email responses</li>
-        <li>14-day follow-up sequences</li>
-        <li>Open house QR code</li>
-        <li class="dim">Multi-source integration</li>
-        <li class="dim">CRM sync</li>
-      </ul>
-      <button class="btn btn-ghost plan-btn">Start free trial</button>
+<section class="final-cta" id="contact">
+  <div class="container">
+    <h2>Want to see what your firm's CRM could look like?</h2>
+    <p>The audit is $3,500 and takes two weeks. If we can't show you $40K+ of annual savings at the end of it, we refund the full fee.</p>
+    <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+      <a href="mailto:scott@boldbeam.io?subject=Salesforce%20Audit%20Request&body=Hi%20Scott%2C%20I'd%20like%20to%20talk%20about%20a%20Salesforce%20audit%20for%20our%20firm." class="btn btn-primary">Book a 20-min intro call</a>
+      <a href="mailto:scott@boldbeam.io?subject=Custom%20CRM%20Questions" class="btn btn-secondary">Email us a question</a>
     </div>
-    <div class="plan featured">
-      <div class="plan-badge">Most popular</div>
-      <div class="plan-name">Solo Agent</div>
-      <div class="plan-price">$49<span>/mo</span></div>
-      <div class="plan-desc">For solo agents doing 6–30 deals a year.</div>
-      <ul>
-        <li>Unlimited leads</li>
-        <li>All lead source integrations</li>
-        <li>Zillow + Realtor.com + FB Ads</li>
-        <li>Calendar auto-booking</li>
-        <li>CRM sync (FUB, kvCORE, Chime)</li>
-        <li>Custom AI voice training</li>
-      </ul>
-      <button class="btn btn-primary plan-btn">Start free trial</button>
-    </div>
-    <div class="plan">
-      <div class="plan-name">Team</div>
-      <div class="plan-price">$149<span>/mo</span></div>
-      <div class="plan-desc">For teams of 3–10 agents.</div>
-      <ul>
-        <li>Everything in Solo Agent</li>
-        <li>5 agent seats included</li>
-        <li>Shared lead routing</li>
-        <li>Team analytics + leaderboard</li>
-        <li>White-label branding</li>
-        <li>Priority support</li>
-      </ul>
-      <button class="btn btn-ghost plan-btn">Book a demo</button>
-    </div>
+    <p style="margin-top: 32px; font-size: 14px; color: var(--text-muted);">Or reply to this page: <a href="mailto:scott@boldbeam.io" style="color: var(--accent);">scott@boldbeam.io</a></p>
   </div>
 </section>
-
-<!-- ============ FAQ ============ -->
-<section id="faq" class="section">
-  <div class="section-eyebrow">FAQ</div>
-  <h2 class="section-title">Questions agents ask.</h2>
-  <div class="faq-list">
-    <details class="faq-item">
-      <summary>Will my leads know it's an AI?</summary>
-      <p>Not unless you tell them. LeadPilot is trained to sound like a human assistant — it uses your name and brokerage, respects your voice, and doesn't give itself away. We can even brand it as "Jordan's Assistant" rather than a generic name. In compliance-strict states (CA, NY, FL), we can add a one-time disclosure.</p>
-    </details>
-    <details class="faq-item">
-      <summary>How is this different from Follow Up Boss or kvCORE?</summary>
-      <p>Those are CRMs with workflow automation — they require you to write every follow-up yourself. LeadPilot is an AI that actually converses with your lead in real time, asks qualifying questions, books showings, and only hands off when the lead is ready. Think of LeadPilot as the layer that sits ON TOP of your existing CRM — it syncs both ways with Follow Up Boss and kvCORE.</p>
-    </details>
-    <details class="faq-item">
-      <summary>What if the AI says something wrong?</summary>
-      <p>For your first 5 conversations, LeadPilot drafts the reply and waits for your one-tap approval. After that, you can let it fly or keep the approval step on high-value conversations (sellers, luxury, relocation). You can jump in any conversation at any time. There's a compliance layer that blocks any discriminatory language or fair-housing violations.</p>
-    </details>
-    <details class="faq-item">
-      <summary>How long does it take to set up?</summary>
-      <p>About 10 minutes. Forward one Zillow lead email so we can set up the parser, connect your Google Calendar, upload 3–5 writing samples, and you're live. Most agents are responding to leads within 15 minutes of signup.</p>
-    </details>
-    <details class="faq-item">
-      <summary>Can I cancel anytime?</summary>
-      <p>Yes. Month-to-month, cancel in one click. If LeadPilot doesn't book you an appointment in your first 30 days, we refund you. We don't want your money if it's not working.</p>
-    </details>
-    <details class="faq-item">
-      <summary>Do I need a separate phone number?</summary>
-      <p>No. LeadPilot gets you a local Twilio number that matches your area code, pre-registered for A2P 10DLC compliance, so your texts actually deliver. Your leads can text that number or your existing number — both flow into LeadPilot.</p>
-    </details>
-  </div>
-</section>
-
-<!-- ============ FINAL CTA ============ -->
-<div class="final-cta">
-  <div class="final-cta-inner">
-    <h2>Stop losing leads to slow replies.</h2>
-    <p>Try LeadPilot free for 14 days. One booked appointment pays for the year.</p>
-    <div class="hero-ctas">
-      <button class="btn btn-primary" onclick="scrollToDemo()">▶ Try the live demo</button>
-      <a class="btn btn-ghost" href="#pricing">Start free trial</a>
-    </div>
-  </div>
-</div>
 
 <footer>
-  <div style="margin-bottom: 10px;"><b style="color: var(--text);">LeadPilot</b> is a product of <b style="color: var(--brand-3);">Boldbeam</b> · boldbeam.io</div>
-  <div>
-    <a href="#">Privacy</a>·
-    <a href="#">Terms</a>·
-    <a href="#">Fair Housing</a>·
-    <a href="mailto:hello@boldbeam.io">hello@boldbeam.io</a>
+  <div class="container">
+    <div class="footer-inner">
+      <div>© 2026 Boldbeam. Replacing Salesforce for firms that outgrew it.</div>
+      <div style="display: flex; gap: 20px;">
+        <a href="#why">Why</a>
+        <a href="#demo">Demo</a>
+        <a href="#offer">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </div>
   </div>
-  <div style="margin-top: 18px; font-size: 11px; color: var(--muted-2);">© 2026 Boldbeam, Inc. LeadPilot is a trademark of Boldbeam, Inc.</div>
 </footer>
 
 <script>
-// ============ STATE ============
-const initialLeads = [
-  { id: 1, name: "Samantha Torres", initials: "ST", color: "linear-gradient(135deg, #f472b6, #c084fc)", source: "open", sourceLabel: "Open House", property: "412 Pine Hollow Dr · $485,000", time: "9 min ago", snippet: "Yes — we'd love to see it Thursday evening!", status: "hot", active: true },
-  { id: 2, name: "Kevin & Mia Patel", initials: "KP", color: "linear-gradient(135deg, #60a5fa, #34d399)", source: "zillow", sourceLabel: "Zillow", property: "2900 Harding Pike · $720,000", time: "22 min ago", snippet: "AI: Great — I've got you on for Friday at 10am.", status: "replied" },
-  { id: 3, name: "Aaron Whitfield", initials: "AW", color: "linear-gradient(135deg, #fb923c, #f472b6)", source: "fb", sourceLabel: "FB Ad", property: "2127 Hillcrest Ln · $389,000", time: "41 min ago", snippet: "AI: Happy to send the disclosure — here you go.", status: "replied" },
-  { id: 4, name: "Deborah Kim", initials: "DK", color: "linear-gradient(135deg, #a78bfa, #60a5fa)", source: "web", sourceLabel: "Website", property: "Seller inquiry · 38104", time: "1h ago", snippet: "AI: Saturday at 11am? Jordan will bring the CMA.", status: "hot" },
-  { id: 5, name: "Marcus Bell", initials: "MB", color: "linear-gradient(135deg, #34d399, #60a5fa)", source: "open", sourceLabel: "Open House", property: "412 Pine Hollow Dr · $485,000", time: "2h ago", snippet: "Buyer: Maybe — still comparing options.", status: "warm" },
-  { id: 6, name: "Rachel Nguyen", initials: "RN", color: "linear-gradient(135deg, #fb7185, #f59e0b)", source: "zillow", sourceLabel: "Zillow", property: "First-time buyer · $300-400k", time: "3h ago", snippet: "AI: Connecting you with a lender now.", status: "replied" },
-  { id: 7, name: "Tyler Reyes", initials: "TR", color: "linear-gradient(135deg, #60a5fa, #a78bfa)", source: "realtor", sourceLabel: "Realtor.com", property: "1880 Oakwood Ave · $625,000", time: "4h ago", snippet: "AI: Comps for that street — give me 1 min.", status: "replied" },
-  { id: 8, name: "Jordan Ellis", initials: "JE", color: "linear-gradient(135deg, #f59e0b, #f472b6)", source: "fb", sourceLabel: "FB Ad", property: "Investor lead · Nashville MSA", time: "5h ago", snippet: "AI: Sending last 30 days of flips now.", status: "replied" },
-  { id: 9, name: "Natalie Cruz", initials: "NC", color: "linear-gradient(135deg, #c084fc, #34d399)", source: "web", sourceLabel: "Website", property: "Home valuation · 37206", time: "7h ago", snippet: "AI: Your CMA is drafting — review tonight.", status: "replied" },
-  { id: 10, name: "Hector Alvarez", initials: "HA", color: "linear-gradient(135deg, #60a5fa, #f472b6)", source: "zillow", sourceLabel: "Zillow", property: "512 Elm St · $265,000", time: "8h ago", snippet: "AI: Still available — tour this weekend?", status: "replied" },
-];
-
-const scenarioPool = {
-  zillow: [
-    { name: "Brianna Cole", initials: "BC", color: "linear-gradient(135deg, #f472b6, #60a5fa)", source: "zillow", sourceLabel: "Zillow", property: "1205 Sunrise Ct · $510,000" },
-    { name: "Maya Bennett", initials: "MB", color: "linear-gradient(135deg, #34d399, #60a5fa)", source: "zillow", sourceLabel: "Zillow", property: "3321 Granville Rd · $410,000" },
-  ],
-  open: [
-    { name: "Priya Shankar", initials: "PS", color: "linear-gradient(135deg, #fb923c, #c084fc)", source: "open", sourceLabel: "Open House", property: "412 Pine Hollow Dr · $485,000" },
-    { name: "Carlos Velez", initials: "CV", color: "linear-gradient(135deg, #c084fc, #fb923c)", source: "open", sourceLabel: "Open House", property: "412 Pine Hollow Dr · $485,000" },
-  ],
-  fb: [
-    { name: "David Okafor", initials: "DO", color: "linear-gradient(135deg, #34d399, #a78bfa)", source: "fb", sourceLabel: "FB Ad", property: "Buyer consult · $450k-$600k" },
-    { name: "Jamie Rivera", initials: "JR", color: "linear-gradient(135deg, #60a5fa, #f472b6)", source: "fb", sourceLabel: "FB Ad", property: "Luxury buyer · $1M+" },
-  ],
-};
-
-let leads = [];
-let activeLeadId = 1;
-let simulatingLead = null;
-
-const conversations = {
-  1: [
-    { from: 'pilot', text: "Hi Samantha — this is Jordan's LeadPilot assistant at KW Nashville. Thanks for stopping by 412 Pine Hollow Dr today! Any questions I can answer?", time: "11:02 AM" },
-    { from: 'lead', text: "Thanks! Yes — is it still available?", time: "11:04 AM" },
-    { from: 'pilot', text: "It is! Offers are being reviewed Monday. Would you like to come back for a private showing before then?", time: "11:04 AM" },
-    { from: 'lead', text: "Yes — we'd love to see it Thursday evening!", time: "11:07 AM" },
-    { from: 'pilot', text: "Perfect — I've put you on Jordan's calendar for Thursday at 5:30pm. He'll text 15 minutes before. 🏡", time: "11:07 AM" },
-  ],
-  2: [
-    { from: 'pilot', text: "Hi Kevin — Jordan's LeadPilot assistant here. Thanks for the inquiry on 2900 Harding Pike! Are you and Mia pre-approved yet?", time: "10:40 AM" },
-    { from: 'lead', text: "Almost — working with our credit union this week. Still available?", time: "10:42 AM" },
-    { from: 'pilot', text: "It is. Since you're locking down financing, Jordan would love a quick buyer consult to map strategy. Friday 10am work?", time: "10:42 AM" },
-    { from: 'lead', text: "Works for us. Zoom?", time: "10:44 AM" },
-    { from: 'pilot', text: "Great — you're on for Friday at 10am. Zoom link on its way. 📅", time: "10:44 AM" },
-  ],
-  3: [
-    { from: 'pilot', text: "Hey Aaron — saw you clicked through on the 2127 Hillcrest Ln ad. Want the full listing PDF?", time: "10:21 AM" },
-    { from: 'lead', text: "Yes please. Also is there a seller disclosure?", time: "10:22 AM" },
-    { from: 'pilot', text: "Happy to send the disclosure doc — here you go. Let me know if you want to see it in person.", time: "10:22 AM" },
-  ],
-  4: [
-    { from: 'pilot', text: "Hi Deborah — saw you requested a home valuation on Jordan's site. Are you thinking of selling soon, or just browsing?", time: "9:58 AM" },
-    { from: 'lead', text: "Selling — probably late summer. House is on Gallatin Pike.", time: "10:02 AM" },
-    { from: 'pilot', text: "Jordan would love to meet. Saturday at 11am? He'll bring a full CMA and walk through your options.", time: "10:02 AM" },
-    { from: 'lead', text: "Saturday at 11 works.", time: "10:09 AM" },
-  ],
-  5: [
-    { from: 'pilot', text: "Hey Marcus — nice meeting you at the 412 Pine Hollow open house. Any questions on the property or the neighborhood?", time: "8:50 AM" },
-    { from: 'lead', text: "Maybe — still comparing options.", time: "8:57 AM" },
-  ],
-};
-
-// ============ RENDER ============
-function renderLeads() {
-  const list = document.getElementById('leadList');
-  list.innerHTML = '';
-  leads.forEach(lead => {
-    const el = document.createElement('div');
-    el.className = 'lead' + (lead.id === activeLeadId ? ' active' : '');
-    if (lead.isNew) el.classList.add('slide-in');
-    el.onclick = () => selectLead(lead.id);
-    let statusTag = '';
-    if (lead.status === 'hot') statusTag = '<span class="tag hot">🔥 Hot</span>';
-    else if (lead.status === 'warm') statusTag = '<span class="tag warm">Warm</span>';
-    else if (lead.status === 'replied') statusTag = '<span class="tag replied">Replied</span>';
-    else if (lead.status === 'responding') statusTag = '<span class="tag responding pulse">⚡ AI responding</span>';
-    el.innerHTML = `
-      <div class="lead-avatar" style="background: ${lead.color};">${lead.initials}</div>
-      <div class="lead-info">
-        <div class="lead-top">
-          <div class="lead-name">${lead.name}</div>
-          <div class="lead-time">${lead.time}</div>
-        </div>
-        <div class="lead-snip">${lead.snippet}</div>
-        <div class="lead-tags">
-          <span class="tag ${lead.source}">${lead.sourceLabel}</span>
-          ${statusTag}
-        </div>
-      </div>
-    `;
-    list.appendChild(el);
+// View switching
+document.querySelectorAll('.nav-item[data-view]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const view = btn.dataset.view;
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    const target = document.getElementById('view-' + view);
+    if (target) target.classList.add('active');
+    document.getElementById('demoContent').scrollTop = 0;
   });
-  const hotCount = leads.filter(l => l.status === 'hot').length;
-  const repliedCount = leads.filter(l => l.status === 'replied' || l.status === 'hot').length;
-  document.getElementById('leadCountLabel').textContent = `${leads.length} leads · ${repliedCount} responded · ${hotCount} hot`;
-  document.getElementById('statLeads').textContent = leads.length;
-}
+});
 
-function selectLead(id) {
-  activeLeadId = id;
-  renderLeads();
-  renderConvo();
-}
+// FAQ toggle
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
 
-function renderConvo() {
-  const lead = leads.find(l => l.id === activeLeadId);
-  if (!lead) return;
-  document.getElementById('convoAvatar').textContent = lead.initials;
-  document.getElementById('convoAvatar').style.background = lead.color;
-  document.getElementById('convoName').textContent = lead.name;
-  document.getElementById('convoMeta').textContent = `${lead.sourceLabel} · ${lead.property}`;
-  const statusEl = document.getElementById('convoStatus');
-  if (lead.status === 'hot') { statusEl.className = 'tag hot'; statusEl.textContent = '🔥 Hot — take over'; }
-  else if (lead.status === 'warm') { statusEl.className = 'tag warm'; statusEl.textContent = 'Warm'; }
-  else if (lead.status === 'responding') { statusEl.className = 'tag responding pulse'; statusEl.textContent = '⚡ AI responding'; }
-  else { statusEl.className = 'tag replied'; statusEl.textContent = 'AI handling'; }
+// Deal card simulate drag feedback
+document.querySelectorAll('.deal').forEach(d => {
+  d.addEventListener('mousedown', () => d.style.cursor = 'grabbing');
+  d.addEventListener('mouseup', () => d.style.cursor = 'grab');
+});
 
-  const msgs = conversations[lead.id] || [];
-  const msgEl = document.getElementById('convoMessages');
-  msgEl.innerHTML = '';
-  msgs.forEach(m => appendMessage(m.from, m.text, m.time, false));
-
-  const takeover = document.getElementById('takeoverBanner');
-  if (lead.status === 'hot') {
-    takeover.style.display = 'flex';
-    document.getElementById('takeoverLead').textContent = lead.name.split(' ')[0];
-  } else {
-    takeover.style.display = 'none';
-  }
-  msgEl.scrollTop = msgEl.scrollHeight;
-}
-
-function appendMessage(from, text, time, animate = true) {
-  const msgEl = document.getElementById('convoMessages');
-  const div = document.createElement('div');
-  div.className = 'msg ' + (from === 'lead' ? 'lead' : (from === 'pilot' ? 'ai pilot' : 'ai'));
-  const metaLabel = from === 'pilot' ? '⚡ LeadPilot AI · ' : (from === 'lead' ? '' : 'Jordan · ');
-  div.innerHTML = `<div>${text}</div><div class="msg-meta">${metaLabel}${time}</div>`;
-  if (animate) div.classList.add('slide-in');
-  msgEl.appendChild(div);
-  msgEl.scrollTop = msgEl.scrollHeight;
-}
-
-function showTyping() {
-  const msgEl = document.getElementById('convoMessages');
-  const div = document.createElement('div');
-  div.className = 'msg ai pilot';
-  div.id = 'typingIndicator';
-  div.innerHTML = `<div class="typing"><span></span><span></span><span></span></div><div class="msg-meta">⚡ LeadPilot is drafting a reply…</div>`;
-  msgEl.appendChild(div);
-  msgEl.scrollTop = msgEl.scrollHeight;
-}
-
-function removeTyping() {
-  const el = document.getElementById('typingIndicator');
-  if (el) el.remove();
-}
-
-// ============ SIMULATION ============
-function simulate(sourceType) {
-  // Disable all scenario buttons during run
-  const btns = document.querySelectorAll('.scenario-btn');
-  btns.forEach(b => b.disabled = true);
-
-  const pool = scenarioPool[sourceType];
-  const pick = pool[Math.floor(Math.random() * pool.length)];
-  const newId = Math.max(...leads.map(l => l.id), 0) + 1;
-  const newLead = {
-    id: newId,
-    name: pick.name,
-    initials: pick.initials,
-    color: pick.color,
-    source: pick.source,
-    sourceLabel: pick.sourceLabel,
-    property: pick.property,
-    time: "just now",
-    snippet: "New lead — LeadPilot drafting response…",
-    status: "responding",
-    isNew: true,
-  };
-  leads.unshift(newLead);
-  simulatingLead = newLead;
-  conversations[newId] = [];
-  activeLeadId = newId;
-  renderLeads();
-  renderConvo();
-
-  setTimeout(() => {
-    showTyping();
-    setTimeout(() => {
-      removeTyping();
-      const text = buildAIResponse(newLead);
-      conversations[newId].push({ from: 'pilot', text: text, time: timeStamp() });
-      appendMessage('pilot', text, timeStamp(), true);
-      newLead.snippet = "AI: " + text.substring(0, 60) + (text.length > 60 ? "…" : "");
-      newLead.status = 'replied';
-      renderLeads();
-
-      // Update response time visually
-      document.getElementById('statResponse').textContent = (35 + Math.floor(Math.random() * 8)) + 's';
-
-      btns.forEach(b => b.disabled = false);
-      // Automatically queue up lead reply after 1.5s for a natural flow
-      setTimeout(() => simulateLeadReply(), 1500);
-    }, 2000);
-  }, 800);
-}
-
-function buildAIResponse(lead) {
-  const first = lead.name.split(' ')[0];
-  switch (lead.source) {
-    case 'zillow':
-      return `Hi ${first} — this is Jordan Reyes' LeadPilot assistant at KW Nashville. Thanks for the inquiry on ${lead.property.split(' · ')[0]}! Still available. Want to schedule a private showing this week?`;
-    case 'fb':
-      return `Hi ${first} — saw you clicked through on Jordan's ad. Quick question so I can help: are you pre-approved, or still working on financing?`;
-    case 'open':
-      return `Hi ${first} — this is LeadPilot, Jordan's assistant. Thanks for stopping by ${lead.property.split(' · ')[0]} today! Any questions on the property or the neighborhood?`;
-    case 'realtor':
-      return `Hey ${first} — Jordan Reyes here (via LeadPilot). Great question on ${lead.property.split(' · ')[0]}. Want me to send you comps + the seller disclosure?`;
-    default:
-      return `Hi ${first} — Jordan's assistant here. Thanks for reaching out. What neighborhoods are you focused on?`;
-  }
-}
-
-function simulateLeadReply() {
-  if (!simulatingLead) return;
-  const btns = document.querySelectorAll('.scenario-btn');
-  btns.forEach(b => b.disabled = true);
-
-  const replies = {
-    zillow: ["Yes! When's available for a showing?", "Still pre-approving. Can I see it this weekend?", "Interested — what's the HOA like?"],
-    open: ["Yes — we loved the kitchen. Can we come back Thursday?", "Yes please, want to see it again.", "Thanks, what did it end up listing at?"],
-    fb: ["Not pre-approved yet, but looking. Can you help?", "Already pre-approved at $550k.", "Still figuring out — what lenders do you work with?"],
-  };
-  const pool = replies[simulatingLead.source] || replies.zillow;
-  const reply = pool[Math.floor(Math.random() * pool.length)];
-
-  setTimeout(() => {
-    conversations[simulatingLead.id].push({ from: 'lead', text: reply, time: timeStamp() });
-    appendMessage('lead', reply, timeStamp(), true);
-    simulatingLead.snippet = reply;
-    renderLeads();
-
-    setTimeout(() => {
-      showTyping();
-      setTimeout(() => {
-        removeTyping();
-        const followUp = buildAIFollowUp(simulatingLead);
-        conversations[simulatingLead.id].push({ from: 'pilot', text: followUp, time: timeStamp() });
-        appendMessage('pilot', followUp, timeStamp(), true);
-        simulatingLead.snippet = "AI: " + followUp.substring(0, 60) + (followUp.length > 60 ? "…" : "");
-        simulatingLead.status = 'hot';
-        renderLeads();
-        renderConvo();
-        btns.forEach(b => b.disabled = false);
-      }, 1800);
-    }, 800);
-  }, 1400);
-}
-
-function buildAIFollowUp(lead) {
-  const first = lead.name.split(' ')[0];
-  return `Perfect — Jordan has Thursday at 5:30pm or Saturday at 10am open. Which works better for you, ${first}? 📅 Once you pick, I'll put it on his calendar and send you a confirmation.`;
-}
-
-function takeOver() {
-  const lead = leads.find(l => l.id === activeLeadId);
-  if (!lead) return;
-  lead.status = 'replied';
-  renderLeads();
-  renderConvo();
-  alert("Taken over! LeadPilot notified Jordan via push notification. All future messages route directly to Jordan.");
-}
-
-function resetDemo() {
-  leads = JSON.parse(JSON.stringify(initialLeads));
-  activeLeadId = 1;
-  renderLeads();
-  renderConvo();
-  document.getElementById('statResponse').textContent = '38s';
-}
-
-function scrollToDemo() {
-  document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
-}
-
-// Init
-resetDemo();
+// Smooth scroll offset for sticky nav
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id.length > 1 && document.querySelector(id)) {
+      e.preventDefault();
+      const el = document.querySelector(id);
+      const y = el.getBoundingClientRect().top + window.pageYOffset - 70;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  });
+});
 </script>
 </body>
 </html>
